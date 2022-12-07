@@ -1,0 +1,8 @@
+#message {
+    margin-top: 3%;
+}
+
+#message, #root {
+    display: flex;
+    justify-content: center;
+}
