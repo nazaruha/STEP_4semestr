@@ -80,20 +80,24 @@ function Request(Callback) { // Callback function - функція яка від
     Callback();
 }
 
-function First(Callback) {
+function First() {
     console.log("First");
 }
 
-function Second(Callback) {
+function Second() {
     console.log("Second");
 }
 */
+
 
 window.addEventListener("load", Init);
 
 const people_url = "https://swapi.dev/api/people";
 const planet_url = "https://swapi.dev/api/planets";
 const row = document.getElementById("root-row");
+const btnNext = document.getElementById("btnNext");
+const btnPrev = document.getElementById("btnPrev");
+var current_data = null;
 
 function Init() {
     const rootElement = document.getElementById("root");
@@ -105,6 +109,7 @@ function Request(URL, Callback) {
     fetch(URL).then(response => {
         return response.json();
     }).then(data => {
+        current_data = data;
         if (URL.includes("people")) {
             Callback("PrintPeople", data);
         }
@@ -112,7 +117,45 @@ function Request(URL, Callback) {
             Callback("PrintPlanets", data);
         }
         
-    });
+    }).catch(error => console.log(error));
+}
+
+btnPrev.onclick = function() {
+    fetch(current_data.previous).then(response => {
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        btnNext.disabled = false;
+        if (data.previous == null) {
+            btnPrev.disabled = true;
+        }
+        if (current_data.previous.includes("people")) {
+            PrintPeople(data.results);
+        }
+        else if (current_data.previous.includes("planets")) {
+            PrintPlanets(data.results);
+        }
+        current_data = data;
+    }).catch(error => console.log(error))
+}
+
+btnNext.onclick = function() {
+    fetch(current_data.next).then(response => {
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        btnPrev.disabled = false;
+        if (data.next == null) {
+            btnNext.disabled = true;
+        }
+        if (current_data.next.includes("people")) {
+            PrintPeople(data.results);
+        }
+        else if (current_data.next.includes("planets")) {
+            PrintPlanets(data.results);
+        }
+        current_data = data;
+    }).catch(error => console.log(error))
 }
 
 function PrintData(message, data) {
@@ -144,7 +187,6 @@ function PrintPeople(data) {
 }
 
 function PrintPlanets(data) {
-    console.log("SDSSDDS");
     row.innerHTML = "";
     data.forEach( (element, index) => {
         row.innerHTML += `<div class="col-lg-4 col-md-6 mt-2">

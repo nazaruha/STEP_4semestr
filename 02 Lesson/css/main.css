@@ -2,7 +2,15 @@
     margin-top: 3%;
 }
 
-#message, #root {
+#message, #root, #buttons {
     display: flex;
     justify-content: center;
 }
+
+#buttons .btn {
+    width: 50%;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
