@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>02 Lesson</title>
+</head>
+<body>
+    <!--This HTML Part for js/main.js-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-3" href="#">SWAPI</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav fs-5">
+              <a class="nav-link" aria-current="page" href="#" id="planet_link" onclick="NavbarLinkClick(this)">Planets</a>
+              <a class="nav-link" href="#" id="people_link" onclick="NavbarLinkClick(this)">People</a>
+              <a class="nav-link" href="#" id="starship_link" onclick="NavbarLinkClick(this)">Starships</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <h1 id="message"></h1>
+    <div class="container" id="root">
+        <div class="row" id="root-row">
+        </div>
+    </div>
+    <div class="container" id="buttons" style="text-align: center;">
+        <button class="btn btn-primary" id="btnPrev" disabled>Prev</button>
+        <button class="btn btn-primary" id="btnNext">Next</button>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- <script src="js/promise.js"></script> -->
+</body>
+</html>

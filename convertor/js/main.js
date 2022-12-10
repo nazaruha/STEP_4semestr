@@ -8,7 +8,7 @@ function Init() {
     }).then(data => {
         console.log("data => ", data);
         Print(data.results);
-    });
+    }).catch(error => console.log(error));
 }
 
 function Print(persons){

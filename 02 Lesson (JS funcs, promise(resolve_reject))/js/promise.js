@@ -15,7 +15,7 @@ const promise = new Promise((resolve, reject) => {
                 model: "Civic"
             }
             console.log("You want to buy: " + car);
-            // reject("Sorry, you don't have enough meney");
+            // reject("Sorry, you don't have enough money");
             resolve();
         }, 2000)
         

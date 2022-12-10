@@ -92,31 +92,45 @@ function Second() {
 
 window.addEventListener("load", Init);
 
+//swapi URLs
 const people_url = "https://swapi.dev/api/people";
 const planet_url = "https://swapi.dev/api/planets";
+const starship_url = "https://swapi.dev/api/starships";
+
 const row = document.getElementById("root-row");
+//paging buttons
 const btnNext = document.getElementById("btnNext");
 const btnPrev = document.getElementById("btnPrev");
+//navbar links
+const people_link = document.getElementById("people_link");
+const planet_link = document.getElementById("planet_link");
+const starship_link = document.getElementById("starship_link");
+
 var current_data = null;
 
 function Init() {
     const rootElement = document.getElementById("root");
     //console.log(rootElement);
-    Request(planet_url, PrintData);
+    Request(starship_url, PrintData, ChangeMessage);
 }
 
-function Request(URL, Callback) {
+function Request(URL, Callback, CallBack2) {
     fetch(URL).then(response => {
         return response.json();
     }).then(data => {
         current_data = data;
-        if (URL.includes("people")) {
-            Callback("PrintPeople", data);
+        switch (URL) {
+            case people_url:
+                CallBack2("People");
+                break;
+            case planet_url:
+                CallBack2("Planets");
+                break;
+            case starship_url:
+                CallBack2("Starships");
+                break;
         }
-        else if (URL.includes("planets")) {
-            Callback("PrintPlanets", data);
-        }
-        
+        Callback(URL, data);
     }).catch(error => console.log(error));
 }
 
@@ -129,12 +143,17 @@ btnPrev.onclick = function() {
         if (data.previous == null) {
             btnPrev.disabled = true;
         }
+
         if (current_data.previous.includes("people")) {
             PrintPeople(data.results);
         }
         else if (current_data.previous.includes("planets")) {
             PrintPlanets(data.results);
         }
+        else if (current_data.previous.includes("starships")) {
+            PrintStarships(data.results);
+        }
+
         current_data = data;
     }).catch(error => console.log(error))
 }
@@ -148,24 +167,50 @@ btnNext.onclick = function() {
         if (data.next == null) {
             btnNext.disabled = true;
         }
+
         if (current_data.next.includes("people")) {
             PrintPeople(data.results);
         }
         else if (current_data.next.includes("planets")) {
             PrintPlanets(data.results);
         }
+        else if (current_data.next.includes("starships")) {
+            PrintStarships(data.results);
+        }
+
         current_data = data;
     }).catch(error => console.log(error))
 }
 
-function PrintData(message, data) {
-    ChangeMessage(message);
-    console.log(`${message}`, data);
-    if (message == "PrintPeople") {
-        PrintPeople(data.results);
+function NavbarLinkClick(e) {
+    const id = e.getAttribute("id");
+    switch (id) {
+        case "planet_link": 
+            Request(planet_url, PrintData, ChangeMessage);
+            break;
+        case "people_link":
+            Request(people_url, PrintData, ChangeMessage);
+            break;
+        case "starship_link":
+            Request(starship_url, PrintData, ChangeMessage);
+            break;
     }
-    else {
-        PrintPlanets(data.results);
+}
+
+function PrintData(URL, data) {
+    switch (URL) {
+        case "https://swapi.dev/api/people":
+            console.log("PEOPLE", data);
+            PrintPeople(data.results);
+            break;
+        case "https://swapi.dev/api/planets":
+            console.log("PLANETS", data);
+            PrintPlanets(data.results);
+            break;
+        case "https://swapi.dev/api/starships":
+            console.log("STARSHIPS", data);
+            PrintStarships(data.results);
+            break;
     }
 }
 
@@ -203,7 +248,30 @@ function PrintPlanets(data) {
     });
 }
 
+function PrintStarships(data) {
+    row.innerHTML = "";
+    data.forEach( (element, index) => {
+        row.innerHTML += `<div class="col-lg-4 col-md-6 mt-2">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">${element.name}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">population: ${element.model}</h6>
+              <p class="card-text"><b>price: </b>${element.cost_in_credits}; <b>manufacturer: </b>${element.manufacturer}; <b>atmospheric speed: </b> ${element.max_atmosphering_speed}; <b>passengers: </b>${element.passengers}</p>
+              <a href="https://swapi.dev/api/starships/${index + 1}/" target="_blank" class="card-link">Card link</a>
+              <a href="https://swapi.dev/api/starships" class="card-link">Another link</a>
+            </div>
+          </div>
+    </div>`
+    });
+}
+
 function ChangeMessage(message) {
     const msg = document.getElementById("message");
-    msg.innerHTML += `${message}`;
+    if (msg.innerHTML != null) {
+        msg.innerHTML = message;
+    }
+    else {
+        msg.innerHTML += `${message}`;
+    }
+    
 }
