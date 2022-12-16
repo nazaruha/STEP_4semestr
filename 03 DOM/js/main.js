@@ -55,18 +55,6 @@ function GetSomeData() {
     }
 }
 
-let headers = {
-    'X-API-KEY': '929083f91594af55059cab37d20f6a7c'
-};
-
-const api_url = "https://api.whatismybrowser.com/api/v3/" + `${navigator.userAgent}`;
-console.log(api_url);
-fetch(api_url).then(response => {
-    console.log(response.json);
-})
-
-
-
 
 
 
