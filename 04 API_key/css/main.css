@@ -5,6 +5,19 @@ body {
 
 #root {
     display: flex;
-    justify-content: center;
-    margin-top: 5%;
+    justify-content: space-between;
+    margin-top: 5%; 
 }
+
+#root-col-photo {
+    display: flex;
+    justify-content: center;
+}
+
+#photo {
+    position: fixed;
+    top: 25%;
+    height: 55%;
+    width: 30%;
+}
+

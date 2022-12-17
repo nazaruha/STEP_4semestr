@@ -1,6 +1,7 @@
 //URL with https://gameofthronesquotes.xyz/ url will work if you disable the AdBlocker somehow
 const HOUSES_URL = "https://api.gameofthronesquotes.xyz/v1/houses";
 let row = document.getElementById("root-row");
+const photo = document.getElementById("photo");
 
 window.addEventListener("load", () => {
   Request(HOUSES_URL, PrintHouses);
@@ -18,7 +19,7 @@ function Request(URL, Callback) {
 
 
 let collumn = document.createElement("div");
-collumn.setAttribute("class", "col-12");
+collumn.setAttribute("class", "col-lg-8");
 
 
 let tbl = document.createElement("table");
@@ -67,6 +68,26 @@ function Init_tbl(element) {
 
 function ShowCharacter(e) {
   console.log(e);
-  let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("modal.html"));
-  modal.show();
+  const charactersPhotosURL = "https://thronesapi.com/api/v2/Characters";
+  const fullName = e.innerHTML.toLowerCase();
+  GetPhoto(charactersPhotosURL, fullName);
+}
+
+function GetPhoto(URL, text) {
+  fetch(URL).then(response => {
+    return response.json();
+  }).then(data => {
+    let flag = false;
+    data.forEach(element => {
+      if (text.includes(element.firstName.toLowerCase()) && text.includes(element.lastName.toLowerCase())) {
+        photo.setAttribute("src", element.imageUrl);
+        flag = true;
+        return;
+      }
+    });
+    if (flag === false) {
+      photo.setAttribute("src", "images\\not-found.png");
+      console.log("picture not found =>", text)
+    }
+  }).catch(error => console.log(error))
 }
