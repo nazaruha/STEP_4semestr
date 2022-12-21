@@ -21,3 +21,20 @@ body {
     width: 30%;
 }
 
+#card-photo {
+    width: 70%;
+    height: 300px;
+    border: 1px solid black;
+    box-shadow: 8px 5px 5px #7b8ab8;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center; /*vertical*/
+}
+
+#paging-buttons {
+    display: flex;
+    justify-items: center;
+}
