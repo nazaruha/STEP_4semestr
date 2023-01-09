@@ -29,10 +29,12 @@ searchField.addEventListener("input", () => {
     onPage = 1;
     firstId = 0;
     lastId = 20;
-    if (text.length == 0) {
+	
+	/*in this if we check if text length == 0 or there are only white spaces*/
+    if (text.trim().length === 0) {
       //FOR OUTPUTTING ALL CHARACTERS IN ONE TIME
       // PrintCharacters(data);
-
+	  console.log("!text");
       PrintNext20Characters(MAIN_URL, firstId, lastId);
     }
     else {
