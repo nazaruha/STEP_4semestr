@@ -1,9 +1,7 @@
 import React from "react";
 
 const Header = () => {
-    return (
-        <h1>Header</h1>
-    )
-}
+  return <h5 className="title">Contact List</h5>;
+};
 
 export default Header;
