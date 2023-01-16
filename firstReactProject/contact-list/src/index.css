@@ -258,9 +258,9 @@ input {
 }
 .contacts-list .unit .name .avatar {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
     margin: 0 16px 0 0;
     vertical-align: top;
 }
@@ -296,15 +296,41 @@ input {
     justify-content: right;
     align-items: center;
 }
-.edit, .delete {
-    border: 1px solid silver;
-    border-radius: 0.25em;
-    padding: 0.5em;
+.edit {
+    color: #FFB727;
 }
-.edit:hover, .delete:hover {
-    color: #333333;
+.delete {
+    color: #FF443C;
+}
+.edit, .delete {
+    border: 2px solid silver;
+    border-radius: 0.25em;
+    padding: 0.3em;
+}
+.edit:hover {
+    color: #FADD82;
+}
+.edit:active {
+    color: #FFB727;
+}
+.delete:hover {
+    color: #FF7A70;
+}
+.delete:active {
+    color: #FF443C;
 }
 .edit:active, .delete:active {
-    color: silver;
-    padding: 0.3em;
+    padding: 0.2em;
+}
+.delete:active {
+    margin-left: 0.4rem;
+}
+#empty-contactList-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #585b9c;
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 1rem;
 }

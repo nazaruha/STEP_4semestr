@@ -25,8 +25,10 @@ const GetCategoryColor = (category) => {
 }
 
 // This our contact of someone
-const ContactItem = ({ name, phone, email, category, avatar }) => {
+const ContactItem = ({ name, phone, email, category, avatar, gender, onDelete }) => {
   let categoryStyle = GetCategoryColor(category);
+  const photoURL = `https://randomuser.me/api/portraits/${gender}/${avatar}.jpg`; // cool API to get photos for users
+
   return (
     <div className="unit">
       <div className="field name">
@@ -36,7 +38,7 @@ const ContactItem = ({ name, phone, email, category, avatar }) => {
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
         <div>
-          <img src={avatar} alt="image" className="avatar" /> {name}
+          <img src={photoURL} alt="image" className="avatar" /> {name}
         </div>
         <div className={categoryStyle}>{category}</div>
       </div>
@@ -44,10 +46,10 @@ const ContactItem = ({ name, phone, email, category, avatar }) => {
       <div className="field email">{email}</div>
       <div className="icons">
         <div>
-          <FontAwesomeIcon className="edit" icon={faEdit} size="1x" />
+          <FontAwesomeIcon className="edit" icon={faEdit} size="2x" />
         </div>
         <div>
-          <FontAwesomeIcon className="delete" icon={faTrash} size="1x" />
+          <FontAwesomeIcon className="delete" icon={faTrash} onClick={onDelete} size="2x" />
         </div>
       </div>
     </div>
