@@ -334,3 +334,9 @@ input {
     font-weight: 500;
     margin: 1rem;
 }
+#avatar-photo-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 19rem;
+}
