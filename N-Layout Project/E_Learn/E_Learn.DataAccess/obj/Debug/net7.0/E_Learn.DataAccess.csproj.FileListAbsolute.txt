@@ -1,0 +1,14 @@
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\bin\Debug\net7.0\E_Learn.DataAccess.deps.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\bin\Debug\net7.0\E_Learn.DataAccess.runtimeconfig.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\bin\Debug\net7.0\E_Learn.DataAccess.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\bin\Debug\net7.0\E_Learn.DataAccess.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.csproj.AssemblyReference.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.AssemblyInfoInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.AssemblyInfo.cs
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\refint\E_Learn.DataAccess.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\E_Learn.DataAccess.genruntimeconfig.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.DataAccess\obj\Debug\net7.0\ref\E_Learn.DataAccess.dll

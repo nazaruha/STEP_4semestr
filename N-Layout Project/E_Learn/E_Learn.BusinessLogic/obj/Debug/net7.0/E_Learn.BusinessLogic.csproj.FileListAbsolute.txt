@@ -1,0 +1,12 @@
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\bin\Debug\net7.0\E_Learn.BusinessLogic.deps.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\bin\Debug\net7.0\E_Learn.BusinessLogic.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\bin\Debug\net7.0\E_Learn.BusinessLogic.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.AssemblyInfo.cs
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\refint\E_Learn.BusinessLogic.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\E_Learn.BusinessLogic.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.BusinessLogic\obj\Debug\net7.0\ref\E_Learn.BusinessLogic.dll

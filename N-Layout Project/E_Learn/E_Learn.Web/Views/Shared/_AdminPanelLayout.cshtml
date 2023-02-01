@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="./AdminPanel/_Header.cshtml"/> <!-- connect our header html code from another file -->
+</head>
+<body class="g-sidenav-show  bg-gray-100">
+    
+    <div class="container">
+        <partial name="./AdminPanel/_Sidebar.cshtml"/>
+        <main role="main" class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+            <partial name="./AdminPanel/_Navbar.cshtml" />
+            @RenderBody() <!-- current page html (Index.cshtml) -->
+            <partial name="./AdminPanel/_Footer.cshtml" />
+        </main>
+    </div>
+    
+    <partial name="./AdminPanel/_FooterIncludes.cshtml" /> <!-- OUR SCRIPTS -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
