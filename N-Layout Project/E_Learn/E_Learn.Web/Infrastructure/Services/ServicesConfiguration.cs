@@ -1,5 +1,5 @@
 ﻿using E_Learn.DataAccess.Data.Context;
-using E_Learn.DataAccess.Data.Models;
+using E_Learn.DataAccess.Data.Models.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace E_Learn.Web.Infrastructure.Services

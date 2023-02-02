@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Learn.DataAccess.Data.Models
+namespace E_Learn.DataAccess.Data.Models.User
 {
     public class AppUser : IdentityUser // inherits Identity's User
     {

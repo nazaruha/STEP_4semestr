@@ -1,4 +1,4 @@
-﻿using E_Learn.DataAccess.Data.Models; // Contect Entities
+﻿using E_Learn.DataAccess.Data.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore; // IdentityDbContext
 using Microsoft.EntityFrameworkCore; // IConfigurationRoot
 using Microsoft.Extensions.Configuration; // Configuration Builder
