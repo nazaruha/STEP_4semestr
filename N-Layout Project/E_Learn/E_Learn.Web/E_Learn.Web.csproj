@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\E_Learn.BusinessLogic\E_Learn.BusinessLogic.csproj" />
     <ProjectReference Include="..\E_Learn.DataAccess\E_Learn.DataAccess.csproj" />
   </ItemGroup>
 

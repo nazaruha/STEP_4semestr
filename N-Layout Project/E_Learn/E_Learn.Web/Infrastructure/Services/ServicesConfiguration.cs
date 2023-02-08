@@ -1,5 +1,7 @@
 ﻿using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.Models.User;
+using E_Learn.DataAccess.Data.Models.ViewModel.User;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 
 namespace E_Learn.Web.Infrastructure.Services
@@ -13,6 +15,9 @@ namespace E_Learn.Web.Infrastructure.Services
 
             // Add database context
             services.AddDbContext<AppDbContext>();
+
+            // Add user service
+            //services.AddTransient<UserService>();
 
             // Add Razor pages
             services.AddRazorPages();
@@ -35,6 +40,16 @@ namespace E_Learn.Web.Infrastructure.Services
             })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+
+            // Cnofigure Fluent Validation
+            services.AddFluentValidation(options =>
+            {
+                options.DisableDataAnnotationsValidation = true;
+                options.ImplicitlyValidateChildProperties = true;
+                options.RegisterValidatorsFromAssemblyContaining<SignInUserVM>(); // вказуємо з якою моделю маємо працювати
+            }
+            );
+
         }
     }
 }

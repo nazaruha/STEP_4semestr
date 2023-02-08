@@ -10,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args); // due to builder we can conne
 // Add services
 ServicesConfiguration.Config(builder.Services);
 
+// Add automapper
+//ServicesConfiguration.Config(builder.Services);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

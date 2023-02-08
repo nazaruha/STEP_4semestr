@@ -283,3 +283,8 @@ C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\
 C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\obj\Debug\net7.0\E_Learn.Web.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\E_Learn.BusinessLogic.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\E_Learn.BusinessLogic.pdb

@@ -36,10 +36,12 @@
                                 <label>Email</label>
                                 <div class="mb-3">
                                     <input asp-for="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                                    <span class="text-danger" asp-validation-for="Email"></span> <!-- This will be our error text during validation FOR EMAIL in asp-validation-for -->
                                 </div>
                                 <label>Password</label>
                                 <div class="mb-3">
                                     <input asp-for="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                                    <span class="text-danger" asp-validation-for="Password"></span> <!-- This will be our error text during validation FOR EMAIL in asp-validation-for -->
                                 </div>
                                 <div class="form-check form-switch">
                                     <input asp-for="RememberMe" class="form-check-input" type="checkbox" id="rememberMe" checked="">

@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "QBW2JeGvECENjGQwmXgUxA6FZ186N11r0zB6WaYZlNCoCRq9uiZH2NSXtxhSyuRri57VzonZCZEkDN1QUIqSQQ==",
+  "dgSpecHash": "7WlSmk/DEl8D/j+azGmKr6Gle4yDSYMPR76HdjrnIUF3WpgQ/wao9GJFRFRx+c48qKLBHTRaV56eysaUQ2vlUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.DataAccess\\E_Learn.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\38096\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\38096\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\38096\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\38096\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\38096\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.4.0\\fluentvalidation.dependencyinjectionextensions.11.4.0.nupkg.sha512",
     "C:\\Users\\38096\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\38096\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\38096\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
