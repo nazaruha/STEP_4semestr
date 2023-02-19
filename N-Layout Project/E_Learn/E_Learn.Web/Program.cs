@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args); // due to builder we can conne
 ServicesConfiguration.Config(builder.Services);
 
 // Add automapper
-//ServicesConfiguration.Config(builder.Services);
+//AutoMapperConfiguration.Config(builder.Services);
 
 var app = builder.Build();
 

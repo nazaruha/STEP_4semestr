@@ -10,7 +10,7 @@ namespace E_Learn.DataAccess.Data.Models.User
     public class AppUser : IdentityUser // inherits Identity's User
     {
         // Write fields that you want to add into your DB table
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Surname { get; set; } = string.Empty;
     }
 }

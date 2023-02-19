@@ -1,4 +1,6 @@
-﻿using E_Learn.DataAccess.Data.Context;
+﻿using E_Learn.BusinessLogic.Services;
+using E_Learn.DataAccess.AutoMapper.User;
+using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.Models.User;
 using E_Learn.DataAccess.Data.Models.ViewModel.User;
 using FluentValidation.AspNetCore;
@@ -16,8 +18,11 @@ namespace E_Learn.Web.Infrastructure.Services
             // Add database context
             services.AddDbContext<AppDbContext>();
 
-            // Add user service
-            //services.AddTransient<UserService>();
+            // Add user service (from Business Logic) AddScoped
+            services.AddTransient<UserService>(); // now we can work with this service but we have nothing there right now
+
+            // Add email service
+            services.AddTransient<EmailService>();
 
             // Add Razor pages
             services.AddRazorPages();
@@ -49,6 +54,9 @@ namespace E_Learn.Web.Infrastructure.Services
                 options.RegisterValidatorsFromAssemblyContaining<SignInUserVM>(); // вказуємо з якою моделю маємо працювати
             }
             );
+
+            // Add AutoMapper
+            services.AddAutoMapper(typeof(AutoMapperUserProfile));
 
         }
     }

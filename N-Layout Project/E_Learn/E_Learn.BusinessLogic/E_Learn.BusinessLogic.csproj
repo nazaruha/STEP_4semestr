@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.5.0" />
+    <PackageReference Include="Microsoft.Exchange.WebServices" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\E_Learn.DataAccess\E_Learn.DataAccess.csproj" />
   </ItemGroup>
 

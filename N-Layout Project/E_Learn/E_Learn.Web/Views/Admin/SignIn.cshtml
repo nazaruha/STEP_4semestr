@@ -32,6 +32,10 @@
                             <p class="mb-0">Enter your email and password to sign in</p>
                         </div>
                         <div class="card-body">
+                            @if(ViewBag.AuthError != null)
+                            {
+                                <span class="text-danger">@ViewBag.AuthError</span>
+                            }
                             <form role="form" asp-controller="Admin" asp-action="SignIn" method="post">
                                 <label>Email</label>
                                 <div class="mb-3">
@@ -40,7 +44,7 @@
                                 </div>
                                 <label>Password</label>
                                 <div class="mb-3">
-                                    <input asp-for="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                                     <span class="text-danger" asp-validation-for="Password"></span> <!-- This will be our error text during validation FOR EMAIL in asp-validation-for -->
                                 </div>
                                 <div class="form-check form-switch">

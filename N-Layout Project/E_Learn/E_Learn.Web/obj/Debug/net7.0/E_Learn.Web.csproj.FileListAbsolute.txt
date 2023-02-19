@@ -288,3 +288,10 @@ C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\
 C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\E_Learn.BusinessLogic.dll
 C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\E_Learn.BusinessLogic.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\Microsoft.Exchange.WebServices.Auth.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\Microsoft.Exchange.WebServices.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\MailKit.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\MimeKit.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web\bin\Debug\net7.0\BouncyCastle.Crypto.dll

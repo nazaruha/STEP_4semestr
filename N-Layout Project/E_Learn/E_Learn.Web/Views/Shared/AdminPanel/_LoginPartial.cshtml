@@ -7,8 +7,13 @@
     @if (SignInManager.IsSignedIn(User)) // перервіряє чи юзер залогінений
     {
         <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+            <a asp-controller="Admin" asp-action="Index" class="nav-link text-body p-0">
+                Hello, @UserManager.GetUserName(User);
+            </a>
+        </li>
+        <li class="nav-item px-3 d-flex align-items-center">
+            <a asp-controller="Admin" asp-action="Logout" class="nav-link text-body p-0">
+                Logout
             </a>
         </li>
     }
