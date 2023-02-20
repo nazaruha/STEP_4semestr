@@ -19,7 +19,7 @@ namespace E_Learn.Web.Infrastructure.Services
             services.AddDbContext<AppDbContext>();
 
             // Add user service (from Business Logic) AddScoped
-            services.AddTransient<UserService>(); // now we can work with this service but we have nothing there right now
+            services.AddTransient<UserService>(); // now we can work with this service
 
             // Add email service
             services.AddTransient<EmailService>();

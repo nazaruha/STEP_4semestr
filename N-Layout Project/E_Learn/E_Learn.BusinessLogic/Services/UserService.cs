@@ -229,7 +229,7 @@ namespace E_Learn.BusinessLogic.Services
                 user.EmailConfirmed = false;
             }
             // if OldPassword is not the same with current password
-            if (model.OldPassword != null)
+            if (!String.IsNullOrEmpty(model.OldPassword) || model.OldPassword != null)
             {
                 bool checkOldPassword = await _userManager.CheckPasswordAsync(user, model.OldPassword);
                 if (!checkOldPassword)
@@ -264,21 +264,21 @@ namespace E_Learn.BusinessLogic.Services
             user.UserName = model.Email;
             user.PhoneNumber = model.PhoneNumber;
             var changePassword = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.Password);
-            var result = await _userManager.UpdateAsync(user);
-            if (result.Succeeded)
+            if (changePassword.Succeeded)
             {
-                await SendConfigurationEmailAsync(user);
-                await _signInManager.SignOutAsync();
-                return new ServiceResponse
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
                 {
-                    Message = "User profile is successfully updated",
-                    Success = true,
-                };
+                    if (!user.EmailConfirmed)
+                        await SendConfigurationEmailAsync(user);
+                    await _signInManager.SignOutAsync();
+                    return new ServiceResponse
+                    {
+                        Message = "User profile is successfully updated",
+                        Success = true,
+                    };
+                }
             }
-            //if (changePassword.Succeeded)
-            //{
-                
-            //}
             return new ServiceResponse
             {
                 Message = "Password hasn't changed.",
@@ -307,9 +307,10 @@ namespace E_Learn.BusinessLogic.Services
 
             // Teacher code
             List<AppUser> users = await _userManager.Users.ToListAsync();
-            List<ListUserVM> mappedUsers = users.Select(u => _mapper.Map<AppUser, ListUserVM>(u)).ToList(); for (int i = 0; i < users.Count; i++)
+            List<ListUserVM> mappedUsers = users.Select(u => _mapper.Map<AppUser, ListUserVM>(u)).ToList();
+            for (int i = 0; i < users.Count; i++)
             {
-                mappedUsers[i].Role = (await _userManager.GetRolesAsync(users[i])).FirstOrDefault();
+                mappedUsers[i].Role = (await _userManager.GetRolesAsync(users[i])).FirstOrDefault(); // get roles for each user
             }
             return new ServiceResponse
             {
@@ -337,6 +338,53 @@ namespace E_Learn.BusinessLogic.Services
                 Message = "User is found",
                 Success = true,
                 Payload = mappedUser
+            };
+        }
+        public async Task<ServiceResponse> UpdateListUserAsync(UpdateProfileVM model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User not found.",
+                    Success = false
+                };
+            }
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+            user.PhoneNumber = model.PhoneNumber;
+            if (user.Email != model.Email)
+            {
+                user.EmailConfirmed = false;
+                user.Email = model.Email;
+                user.UserName = model.Email;
+                await SendConfigurationEmailAsync(user);
+            }
+            var isLockedResult = await _userManager.SetLockoutEnabledAsync(user, !model.isLocked);
+            if (isLockedResult.Succeeded)
+            {
+                var updateResult = await _userManager.UpdateAsync(user);
+                if (updateResult.Succeeded)
+                {    
+                    return new ServiceResponse
+                    {
+                        Message = "User is successfully updated!",
+                        Success = true,
+                    };
+                }
+            }
+
+            List<IdentityError> errorList = new List<IdentityError>();
+            string errors = "";
+            foreach (var error in errorList)
+            {
+                errors += error.Description.ToString();
+            }
+            return new ServiceResponse
+            {
+                Message = errors,
+                Success = false
             };
         }
     }

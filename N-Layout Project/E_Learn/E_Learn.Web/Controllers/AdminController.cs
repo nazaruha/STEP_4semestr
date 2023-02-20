@@ -117,6 +117,24 @@ namespace E_Learn.Web.Controllers
             }
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken] // щоб не могли фейкові данні прислати
+        public async Task<IActionResult> ListUserSettings(UpdateProfileVM model)
+        {
+            var validation = new ListUserValidation();
+            var validationResult = await validation.ValidateAsync(model);
+            if (validationResult.IsValid)
+            {
+                var result = await _userService.UpdateListUserAsync(model);
+                if (result.Success)
+                {
+                    return RedirectToAction("Users", "Admin");
+                }
+                ViewBag.AuthError = result.Message;
+                return View(model);
+            }
+            return View(model);
+        }
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
