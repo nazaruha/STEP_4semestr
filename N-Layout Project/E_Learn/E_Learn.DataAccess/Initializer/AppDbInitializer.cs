@@ -1,10 +1,13 @@
 ﻿using E_Learn.DataAccess.Data.Context;
+using E_Learn.DataAccess.Data.Models.Category;
 using E_Learn.DataAccess.Data.Models.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,6 +96,31 @@ namespace E_Learn.DataAccess.Initializer
                     {
                         userManager.AddToRoleAsync(student, "Students").Wait();
                     }
+                }
+            }
+            using (var context = new AppDbContext()) // добaвляєм наші категорії
+            {
+                if (await context.Categories.FirstOrDefaultAsync(c => c.Name == "Programming") == null) // doesn't work
+                {
+                    context.Categories.AddRange(
+                        new Category()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            Name = "Programming"
+                        },
+                        new Category()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            Name = "Design"
+                        },
+                        new Category()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            Name = "DevOps"
+                        }
+                        );
+
+                    await context.SaveChangesAsync();
                 }
             }
         }

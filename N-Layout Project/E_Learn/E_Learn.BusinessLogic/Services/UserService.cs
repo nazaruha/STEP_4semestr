@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using E_Learn.DataAccess.Data.Context;
+using E_Learn.DataAccess.Data.Models.Category;
 using E_Learn.DataAccess.Data.Models.User;
+using E_Learn.DataAccess.Data.Models.ViewModel.Category;
 using E_Learn.DataAccess.Data.Models.ViewModel.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +10,9 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Exchange.WebServices.Data;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Abstractions;
+using Org.BouncyCastle.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +26,20 @@ namespace E_Learn.BusinessLogic.Services
     public class UserService
     {
         private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration; // for sending emails
         private readonly UserManager<AppUser> _userManager; // connect our userManager<DB>
         private readonly SignInManager<AppUser> _signInManager; // connect our sign in manager
         private readonly EmailService _emailService;
+        private readonly AppDbContext context;
 
-        public UserService(EmailService emailService, IConfiguration configuration, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public UserService(EmailService emailService, IConfiguration configuration, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
             _configuration = configuration;
             _emailService = emailService;
+            this.context = context;
         }
         public async Task<ServiceResponse> SignInUserAsync(SignInUserVM model) // add Async if function is asynchronimum
         {
@@ -286,6 +292,17 @@ namespace E_Learn.BusinessLogic.Services
                 Payload = model
             };
         }
+        public async Task<ServiceResponse> GetCategories()
+        {
+            List<Category> categories = await context.Categories.ToListAsync();
+            List<CategoryVM> mappedCategories = categories.Select(c => _mapper.Map<Category, CategoryVM>(c)).ToList();
+            return new ServiceResponse
+            {
+                Message = "All categories are loaded.",
+                Success = true,
+                Payload = mappedCategories
+            };
+        }
 
         public async Task<ServiceResponse> GetUserListAsync()
         {
@@ -385,6 +402,72 @@ namespace E_Learn.BusinessLogic.Services
             {
                 Message = errors,
                 Success = false
+            };
+        }
+        public async Task<ServiceResponse> ForgotPasswordAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user== null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User not found with this email",
+                    Success = false
+                };
+            }
+
+            // token - токен, який нам якусь хуйню зебезпечує я хз (треба погуглить)
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = Encoding.UTF8.GetBytes(token);
+            var validToken = WebEncoders.Base64UrlEncode(encodedToken);
+
+            string url = $"{_configuration["HostSettings:URL"]}/Admin/ResetPassword?email={email}&token={validToken}";
+            string emailBody = "<h1>Follow the instructions </h1>" + $"<p>To reset your password. <a href=\"{url}\">click this button</a>";
+            await _emailService.SendEmailAsync(email, "Forgot password", emailBody);
+
+            return new ServiceResponse
+            {
+                Success = true,
+                Message = "Reset code has been sent to the email"
+            };
+        }
+        public async Task<ServiceResponse> ResetPasswordAsync(ResetPasswordVM model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User not found",
+                    Success = false
+                };
+            }
+
+            if (model.NewPassword != model.ConfirmPassword) // additional checking. для підстраховки
+            {
+                return new ServiceResponse
+                {
+                    Message = "Passwords are not equal",
+                    Success = false
+                };
+            }
+            var decodedToken = WebEncoders.Base64UrlDecode(model.Token);
+            string normalToken = Encoding.UTF8.GetString(decodedToken);
+            var result = await _userManager.ResetPasswordAsync(user, normalToken, model.NewPassword);
+            if (result.Succeeded) 
+            {
+                return new ServiceResponse
+                {
+                    Success = true,
+                    Message = "Password is successfully changed."
+                };
+            }
+
+            return new ServiceResponse
+            {
+                Success = false,
+                Message = "Unknown error.",
+                Errors = result.Errors.Select(e => e.Description)
             };
         }
     }

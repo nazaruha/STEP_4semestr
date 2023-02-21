@@ -49,6 +49,7 @@ namespace E_Learn.Web.Controllers
         }
         [AllowAnonymous]
         [HttpPost] // а тут приумає данні які користувач надсилає на цю сторінку методом post
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(SignUpUserVM model)
         {
             var validator = new SignUpUserValidation();
@@ -99,6 +100,15 @@ namespace E_Learn.Web.Controllers
             return View(model);
             
         }
+        public async Task<IActionResult> Categories()
+        {
+            var result = await _userService.GetCategories();
+            if (result.Success)
+            {
+                return View(result.Payload);
+            }
+            return View();
+        }
         public async Task<IActionResult> Users()
         {
             var result = await _userService.GetUserListAsync();
@@ -144,6 +154,54 @@ namespace E_Learn.Web.Controllers
                 return RedirectToAction("ConfirmEmail", "Admin");
             }
             return View();
+        }
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword([FromForm] string email) // уточнили що з форми отримуємо данні
+        {
+            var result = await _userService.ForgotPasswordAsync(email);
+            if (result.Success)
+            {
+                ViewBag.AuthError = result.Message;
+            }
+            else
+            {
+                ViewBag.AuthError = result.Message;
+            }
+            return View();
+        }
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword(string email, string token)
+        {
+            ViewBag.Token = token;
+            ViewBag.Email = email;
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordVM model)
+        {
+            var validator = new ResetPasswordValidation();
+            var validatorResult = await validator.ValidateAsync(model);
+            if (validatorResult.IsValid)
+            {
+                var result = await _userService.ResetPasswordAsync(model);
+                if (result.Success)
+                {
+                    return RedirectToAction("SignIn", "Admin");
+                }
+                ViewBag.AuthError = result.Errors;
+                return View(model);
+            }
+            ViewBag.AuthError = validatorResult.Errors;
+            return View(model);
         }
         public async Task<IActionResult> Profile()
         {

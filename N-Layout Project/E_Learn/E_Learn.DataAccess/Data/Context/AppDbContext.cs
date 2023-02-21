@@ -1,6 +1,8 @@
-﻿using E_Learn.DataAccess.Data.Models.User;
+﻿using E_Learn.DataAccess.Data.Models.Category;
+using E_Learn.DataAccess.Data.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore; // IdentityDbContext
 using Microsoft.EntityFrameworkCore; // IConfigurationRoot
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration; // Configuration Builder
 using Microsoft.Extensions.Options;
 using System;
@@ -15,7 +17,7 @@ namespace E_Learn.DataAccess.Data.Context
     public class AppDbContext : IdentityDbContext // inherit Identity framework
     {
         public DbSet<AppUser> AppUsers { get; set; }
-
+        public DbSet<Category> Categories { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder) // тут відбувається підключення до БД через ConnectionString який знаходить в appsettings.json
         {
             IConfigurationRoot configuration = new ConfigurationBuilder().
