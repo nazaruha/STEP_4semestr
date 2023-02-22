@@ -10,6 +10,8 @@ using E_Learn.DataAccess.Data.Models.User;
 using AutoMapper;
 using NuGet.DependencyResolver;
 using Microsoft.Exchange.WebServices.Data;
+using AspNetCore;
+using E_Learn.DataAccess.Data.Models.Category;
 
 namespace E_Learn.Web.Controllers
 {
@@ -17,11 +19,12 @@ namespace E_Learn.Web.Controllers
     public class AdminController : Controller
     {
         private readonly UserService _userService;
-        private readonly IMapper _mapper;
+        private readonly CategoryService _categoryService;
 
-        public AdminController(UserService userService)
+        public AdminController(UserService userService, CategoryService categoryService)
         {
             _userService = userService;
+            _categoryService = categoryService;
         }
         public IActionResult Index()
         {
@@ -102,13 +105,29 @@ namespace E_Learn.Web.Controllers
         }
         public async Task<IActionResult> Categories()
         {
-            var result = await _userService.GetCategories();
+            var result = await _categoryService.GetCategoriesAsync();
             if (result.Success)
             {
                 return View(result.Payload);
             }
             return View();
         }
+        public async Task<IActionResult> EditCategory(string id)
+        {
+            var result = await _categoryService.GetCategoryById(id);
+            if (result.Success)
+            {
+                return View(result.Payload);
+            }
+            ViewBag.AuthError = result.Message;
+            return View();
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> EditCategory(Category model)
+        //{
+
+        //}
         public async Task<IActionResult> Users()
         {
             var result = await _userService.GetUserListAsync();
@@ -177,6 +196,7 @@ namespace E_Learn.Web.Controllers
             return View();
         }
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(string email, string token)
         {
             ViewBag.Token = token;

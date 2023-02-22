@@ -1,5 +1,5 @@
-﻿@using E_Learn.DataAccess.Data.Models.ViewModel.Category;
-@model List<CategoryVM>
+﻿@using E_Learn.DataAccess.Data.Models.Category;
+@model List<Category>
 @{
     ViewData["Title"] = "Categories";
 }
@@ -17,20 +17,33 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                    @if (User.IsInRole("Administrators"))
+                                    {
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    }
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var category in Model)
                                 {
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">@category.Name</h6>
-                                                    </div>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@category.Name</h6>
                                                 </div>
+                                            </div>
+                                        </td>
+                                        @if (User.IsInRole("Administrators"))
+                                        {
+                                            <td class="align-middle">
+                                                <a asp-controller="Admin" asp-action="EditCategory" asp-route-id="@category.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                    Edit
+                                                </a>
                                             </td>
-                                        </tr>
+                                        }
+                                    </tr>
                                 }
                             </tbody>
                         </table>

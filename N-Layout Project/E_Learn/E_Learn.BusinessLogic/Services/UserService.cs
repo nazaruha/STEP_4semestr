@@ -292,17 +292,6 @@ namespace E_Learn.BusinessLogic.Services
                 Payload = model
             };
         }
-        public async Task<ServiceResponse> GetCategories()
-        {
-            List<Category> categories = await context.Categories.ToListAsync();
-            List<CategoryVM> mappedCategories = categories.Select(c => _mapper.Map<Category, CategoryVM>(c)).ToList();
-            return new ServiceResponse
-            {
-                Message = "All categories are loaded.",
-                Success = true,
-                Payload = mappedCategories
-            };
-        }
 
         public async Task<ServiceResponse> GetUserListAsync()
         {
