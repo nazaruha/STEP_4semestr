@@ -13,11 +13,19 @@ namespace E_Learn.DataAccess.Data.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {        
-        public async Task<List<Category>> GetAll()
+        public async Task<List<Category>> GetAllAsync()
         {
             using (var _context = new AppDbContext())
             {
                 List<Category> result = await _context.Categories.ToListAsync();
+                return result;
+            }
+        }
+        public async Task<Category> GetByIdAsync(string id)
+        {
+            using (var _context = new AppDbContext())
+            {
+                Category result = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
                 return result;
             }
         }
