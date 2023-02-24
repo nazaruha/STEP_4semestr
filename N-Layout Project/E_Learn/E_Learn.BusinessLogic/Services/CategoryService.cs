@@ -22,7 +22,7 @@ namespace E_Learn.BusinessLogic.Services
 
         public async Task<ServiceResponse> GetCategoriesAsync()
         {
-            List<Category> categories = await _categoryRepository.GetAll();
+            List<Category> categories = await _categoryRepository.GetAllAsync();
             return new ServiceResponse
             {
                 Message = "All categories are loaded.",
@@ -32,21 +32,12 @@ namespace E_Learn.BusinessLogic.Services
         }
         public async Task<ServiceResponse> GetCategoryByIdAsync(string id)
         {
-            List<Category> categories = await _categoryRepository.GetAll();
-            if (categories == null)
-            {
-                return new ServiceResponse
-                {
-                    Message = "Categories are not loaded",
-                    Success = false
-                };
-            }
-            var currentCategory = categories.Find(c => c.Id == id);
+            Category currentCategory = await _categoryRepository.GetByIdAsync(id);
             if (currentCategory == null)
             {
                 return new ServiceResponse
                 {
-                    Message = "Category is not found",
+                    Message = "Category isn't found.",
                     Success = false
                 };
             }
@@ -69,7 +60,7 @@ namespace E_Learn.BusinessLogic.Services
                 };
             }
             // check if the name is occupied by another category
-            List<Category> categories = await _categoryRepository.GetAll();
+            List<Category> categories = await _categoryRepository.GetAllAsync();
             if (categories == null)
             {
                 return new ServiceResponse
@@ -143,7 +134,7 @@ namespace E_Learn.BusinessLogic.Services
                     Success = false
                 };
             }
-            List<Category> categories = await _categoryRepository.GetAll();
+            List<Category> categories = await _categoryRepository.GetAllAsync();
             if (categories.Find(c => c.Name == model.Name) != null)
             {
                 return new ServiceResponse
