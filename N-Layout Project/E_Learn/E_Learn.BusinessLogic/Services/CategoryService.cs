@@ -60,25 +60,14 @@ namespace E_Learn.BusinessLogic.Services
                 };
             }
             // check if the name is occupied by another category
-            List<Category> categories = await _categoryRepository.GetAllAsync();
-            if (categories == null)
+            var isNameOccupied = await _categoryRepository.GetIsNameExistAsync(model.Name);
+            if (isNameOccupied)
             {
                 return new ServiceResponse
                 {
-                    Message = "Categories aren't found.",
+                    Message = "The name is occupied already.",
                     Success = false
                 };
-            }
-            foreach (var item in categories)
-            {
-                if (item.Name == model.Name && item.Id != model.Id)
-                {
-                    return new ServiceResponse
-                    {
-                        Message = "The Name is occupied by another category.",
-                        Success = false
-                    };
-                }
             }
             // update category
             var result = _categoryRepository.UpdateCategory(model);

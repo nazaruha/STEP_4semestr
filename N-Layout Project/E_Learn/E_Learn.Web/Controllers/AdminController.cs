@@ -129,7 +129,7 @@ namespace E_Learn.Web.Controllers
             var result = await _categoryService.EditCategoryAsync(model);
             if (result.Success)
             {
-                return RedirectToAction("Categories", "Admin");
+                return RedirectToAction(nameof(Categories)); // the same as ("Categories", "Admin"). Anyway, nameof type is more readily. Use it if the action of the controller in which you work
             }
             ViewBag.AuthError = result.Message;
             return View(model);

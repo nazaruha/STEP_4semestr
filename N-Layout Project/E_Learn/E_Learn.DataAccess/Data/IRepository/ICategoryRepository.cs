@@ -12,6 +12,7 @@ namespace E_Learn.DataAccess.Data.IRepository
     {
         Task<List<Category>> GetAllAsync();
         Task<Category> GetByIdAsync(string id);
+        Task<bool> GetIsNameExistAsync(string name);
         bool UpdateCategory(Category model);
         bool RemoveCategory(Category model);
         bool AddCategory(Category model);

@@ -29,6 +29,13 @@ namespace E_Learn.DataAccess.Data.Repository
                 return result;
             }
         }
+        public async Task<bool> GetIsNameExistAsync(string name)
+        {
+            using (var _context = new AppDbContext())
+            {
+                return await _context.Categories.AnyAsync(c => c.Name == name);
+            }
+        }
         public bool UpdateCategory(Category model)
         {
             using (var _context = new AppDbContext())
