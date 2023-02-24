@@ -53,7 +53,10 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-success border border-1" asp-controller="Admin" asp-action="AddCategory">Add Category +</a>
+            @if (User.IsInRole("Administrators"))
+            {
+                <a class="btn btn-success border border-1" asp-controller="Admin" asp-action="AddCategory">Add Category +</a>
+            }
         </div>
     </div>
 </div>
