@@ -98,31 +98,33 @@ namespace E_Learn.DataAccess.Initializer
                     }
                 }
             }
-            using (var context = new AppDbContext()) // добaвляєм наші категорії
-            {
-                if (await context.Categories.FirstOrDefaultAsync(c => c.Name == "Programming") == null) // doesn't work
-                {
-                    context.Categories.AddRange(
-                        new Category()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            Name = "Programming"
-                        },
-                        new Category()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            Name = "Design"
-                        },
-                        new Category()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            Name = "DevOps"
-                        }
-                        );
 
-                    await context.SaveChangesAsync();
-                }
-            }
+            // ЗАКОМЕНТУВАВ, БО ЯКЩО УДАЛЮ ЯКУСЬ З КАТЕГОРІЙ ТО БУДЕ БАГАТО КОПІЙ
+            //using (var context = new AppDbContext()) // добaвляєм наші категорії
+            //{
+            //    if (await context.Categories.FirstOrDefaultAsync(c => c.Name == "Programming") == null) // doesn't work
+            //    {
+            //        context.Categories.AddRange(
+            //            new Category()
+            //            {
+            //                Id = Guid.NewGuid().ToString(),
+            //                Name = "Programming"
+            //            },
+            //            new Category()
+            //            {
+            //                Id = Guid.NewGuid().ToString(),
+            //                Name = "Design"
+            //            },
+            //            new Category()
+            //            {
+            //                Id = Guid.NewGuid().ToString(),
+            //                Name = "DevOps"
+            //            }
+            //            );
+
+            //        await context.SaveChangesAsync();
+            //    }
+            //}
         }
     }
 }

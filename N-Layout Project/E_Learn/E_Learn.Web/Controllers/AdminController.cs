@@ -10,8 +10,8 @@ using E_Learn.DataAccess.Data.Models.User;
 using AutoMapper;
 using NuGet.DependencyResolver;
 using Microsoft.Exchange.WebServices.Data;
-using AspNetCore;
 using E_Learn.DataAccess.Data.Models.Category;
+using System.ComponentModel;
 
 namespace E_Learn.Web.Controllers
 {
@@ -114,7 +114,7 @@ namespace E_Learn.Web.Controllers
         }
         public async Task<IActionResult> EditCategory(string id)
         {
-            var result = await _categoryService.GetCategoryById(id);
+            var result = await _categoryService.GetCategoryByIdAsync(id);
             if (result.Success)
             {
                 return View(result.Payload);
@@ -122,12 +122,58 @@ namespace E_Learn.Web.Controllers
             ViewBag.AuthError = result.Message;
             return View();
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> EditCategory(Category model)
-        //{
-
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCategoryAsync(Category model)
+        {
+            var result = await _categoryService.EditCategoryAsync(model);
+            if (result.Success)
+            {
+                return RedirectToAction("Categories", "Admin");
+            }
+            ViewBag.AuthError = result.Message;
+            return View(model);
+        }
+        public async Task<IActionResult> DeleteCategory(string id)
+        {
+            var result = await _categoryService.DeleteCategoryAsync(id);
+            if (result.Success)
+            {
+                return RedirectToAction("Categories", "Admin");
+            }
+            ViewBag.AuthError = result.Message;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteCategory(Category model)
+        {
+            var result = await _categoryService.DeleteCategoryAsync(model.Id);
+            if (result.Success)
+            {
+                return RedirectToAction("Categories", "Admin");
+            }
+            ViewBag.AuthError = result.Message;
+            return View();
+        }
+        public IActionResult AddCategory()
+        {
+            Category newCategory = new Category();
+            return View(newCategory);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCategory(string Name)
+        {
+            var result = await _categoryService.AddCategoryAsync(Name);
+            if (result.Success)
+            {
+                ViewBag.AuthError = result.Message;
+                return View();
+            }
+            ViewBag.AuthError = result.Message;
+            return View();
+        }
         public async Task<IActionResult> Users()
         {
             var result = await _userService.GetUserListAsync();

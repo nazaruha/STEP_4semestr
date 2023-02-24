@@ -10,5 +10,8 @@ namespace E_Learn.DataAccess.Data.IRepository
     public interface ICategoryRepository
     {
         Task<List<Category>> GetAll();
+        bool UpdateCategory(Category model);
+        bool RemoveCategory(Category model);
+        bool AddCategory(Category model);
     }
 }

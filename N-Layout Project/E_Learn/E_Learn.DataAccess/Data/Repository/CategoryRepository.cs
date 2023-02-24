@@ -21,5 +21,53 @@ namespace E_Learn.DataAccess.Data.Repository
                 return result;
             }
         }
+        public bool UpdateCategory(Category model)
+        {
+            using (var _context = new AppDbContext())
+            {
+                try
+                {
+                    _context.Update(model);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool RemoveCategory(Category model)
+        {
+            using (var _context = new AppDbContext())
+            {
+                try
+                {
+                    _context.Remove(model);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool AddCategory(Category model)
+        {
+            using (var _context = new AppDbContext())
+            {
+                try
+                {
+                    _context.Add(model);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
