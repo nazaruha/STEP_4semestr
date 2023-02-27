@@ -1,6 +1,6 @@
 ﻿using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.IRepository;
-using E_Learn.DataAccess.Data.Models.Category;
+using E_Learn.DataAccess.Data.Models.Categories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -27,6 +27,9 @@ namespace E_Learn.Web.Infrastructure.Services
             // Add category service
             services.AddTransient<CategoryService>();
 
+            //Add course service
+            services.AddTransient<CourseService>();
+
             // Add Razor pages
             services.AddRazorPages();
 

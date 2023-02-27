@@ -1,5 +1,5 @@
 ﻿using E_Learn.DataAccess.Data.Context;
-using E_Learn.DataAccess.Data.Models.Category;
+using E_Learn.DataAccess.Data.Models.Categories;
 using E_Learn.DataAccess.Data.Models.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;

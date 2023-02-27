@@ -9,6 +9,7 @@ namespace E_Learn.Web.Infrastructure.Repositories
         {
             // Add category repository
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
         }
     }
 }

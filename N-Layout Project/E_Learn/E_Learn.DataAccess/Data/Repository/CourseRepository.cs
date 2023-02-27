@@ -1,4 +1,7 @@
-﻿using E_Learn.DataAccess.Data.IRepository;
+﻿using E_Learn.DataAccess.Data.Context;
+using E_Learn.DataAccess.Data.IRepository;
+using E_Learn.DataAccess.Data.Models.Course;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,12 @@ namespace E_Learn.DataAccess.Data.Repository
 {
     public class CourseRepository : ICourseRepository
     {
-
+        public async Task<IEnumerable<Course>> GetAllAsync()
+        {
+            using (var _context = new AppDbContext())
+            {
+                return await _context.Courses.Include(x => x.Category).ToListAsync(); // треба Include щоб об'єкт унаслідований з БД не був null
+            }
+        }
     }
 }

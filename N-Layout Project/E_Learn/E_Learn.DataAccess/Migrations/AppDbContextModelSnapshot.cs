@@ -22,7 +22,7 @@ namespace ELearn.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("E_Learn.DataAccess.Data.Models.Category.Category", b =>
+            modelBuilder.Entity("E_Learn.DataAccess.Data.Models.Categories.Category", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -33,6 +33,9 @@ namespace ELearn.DataAccess.Migrations
                         .HasColumnType("nvarchar(55)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Categories");
                 });
@@ -43,19 +46,27 @@ namespace ELearn.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(55)
-                        .HasColumnType("nvarchar(55)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Title")
                         .IsUnique();
 
                     b.ToTable("Courses");
@@ -284,11 +295,9 @@ namespace ELearn.DataAccess.Migrations
 
             modelBuilder.Entity("E_Learn.DataAccess.Data.Models.Course.Course", b =>
                 {
-                    b.HasOne("E_Learn.DataAccess.Data.Models.Category.Category", "Category")
+                    b.HasOne("E_Learn.DataAccess.Data.Models.Categories.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });

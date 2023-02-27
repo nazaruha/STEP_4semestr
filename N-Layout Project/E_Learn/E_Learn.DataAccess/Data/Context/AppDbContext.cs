@@ -1,4 +1,4 @@
-﻿using E_Learn.DataAccess.Data.Models.Category;
+﻿using E_Learn.DataAccess.Data.Models.Categories;
 using E_Learn.DataAccess.Data.Models.Course;
 using E_Learn.DataAccess.Data.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore; // IdentityDbContext
@@ -36,7 +36,11 @@ namespace E_Learn.DataAccess.Data.Context
 
             //makes Course's table field "Name" unique
             builder.Entity<Course>()
-                .HasIndex(u => u.Name)
+                .HasIndex(u => u.Title) // кластерний індекс
+                .IsUnique();
+
+            builder.Entity<Category>()
+                .HasIndex(c => c.Name)
                 .IsUnique();
         }
     }

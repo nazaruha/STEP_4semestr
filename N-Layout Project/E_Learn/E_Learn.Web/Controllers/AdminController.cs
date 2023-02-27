@@ -10,7 +10,7 @@ using E_Learn.DataAccess.Data.Models.User;
 using AutoMapper;
 using NuGet.DependencyResolver;
 using Microsoft.Exchange.WebServices.Data;
-using E_Learn.DataAccess.Data.Models.Category;
+using E_Learn.DataAccess.Data.Models.Categories;
 using System.ComponentModel;
 
 namespace E_Learn.Web.Controllers
@@ -20,11 +20,13 @@ namespace E_Learn.Web.Controllers
     {
         private readonly UserService _userService;
         private readonly CategoryService _categoryService;
+        private readonly CourseService _courseService;
 
-        public AdminController(UserService userService, CategoryService categoryService)
+        public AdminController(UserService userService, CategoryService categoryService, CourseService courseService)
         {
             _userService = userService;
             _categoryService = categoryService;
+            _courseService = courseService;
         }
         public IActionResult Index()
         {
@@ -102,6 +104,16 @@ namespace E_Learn.Web.Controllers
             }
             return View(model);
             
+        }
+        public async Task<IActionResult> Courses()
+        {
+            var result = await _courseService.GetCoursesAsync();
+            if (result.Success)
+            {
+                return View(result.Payload);
+            }
+            ViewBag.AuthError = result.Message;
+            return View(result.Payload);
         }
         public async Task<IActionResult> Categories()
         {

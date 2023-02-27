@@ -1,0 +1,93 @@
+﻿@using E_Learn.DataAccess.Data.Models.Course;
+@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Categories table</h6>
+                </div>
+                @if (ViewBag.AuthError != null)
+                {
+                    <span class="test-danger">@ViewBag.AuthError</span>
+                }
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+                                    @if (User.IsInRole("Administrators"))
+                                    {
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    }
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var course in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@course.Title</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@course.Price</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    @if (course.Category != null) {
+                                                        <h6 class="mb-0 text-sm">@course.Category.Name</h6>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h6 class="mb-0 text-sm text-warning">Absent</h6>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        @if (User.IsInRole("Administrators"))
+                                        {
+                                            <td class="align-middle">
+                                                <a asp-controller="Admin" asp-action="EditCourse" asp-route-id="@course.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit course">
+                                                    Edit
+                                                </a>
+                                                <a asp-controller="Admin" asp-action="DeleteCourse" asp-route-id="@course.Id" class="text-secondary font-weight-bold text-xs ms-3" data-toggle="tooltip" data-original-title="Delete course">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @if(User.IsInRole("Administrators"))
+            {
+                <a class="btn btn-success border border-1" asp-controller="Admin" asp-action="AddCourse">Add Course +</a>
+            }
+        </div>
+    </div>
+</div>
+
