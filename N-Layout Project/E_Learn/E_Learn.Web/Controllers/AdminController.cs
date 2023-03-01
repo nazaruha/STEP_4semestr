@@ -140,7 +140,8 @@ namespace E_Learn.Web.Controllers
                 var result = await _courseService.AddCourseAsync(model);
                 if (result.Success)
                     return RedirectToAction(nameof(Courses));
-                ViewBag.AuthError = result.Message;
+                ViewBag.AuthError = result.Message.First();
+                await LoadCategories();
                 return View(result.Payload);
             }
             ViewBag.AuthError = validationResult.Errors;

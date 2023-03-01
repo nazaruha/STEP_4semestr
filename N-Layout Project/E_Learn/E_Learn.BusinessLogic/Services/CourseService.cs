@@ -58,17 +58,13 @@ namespace E_Learn.BusinessLogic.Services
                 string upload = webPathRoot + _configuration.GetValue<string>("ImageSettings:CourseImagePath"); // уже вписали шлях який нам треба для збереження фотки
                 string fileName = Path.GetRandomFileName(); // creates random file name. Although you can use Guid.NewGuid().ToString();
                 string extension = Path.GetExtension(files[0].FileName); // gets extension of file
+                string filePath = Path.Combine(upload, fileName + extension);
                 // зробити перевірку на extension
-                using(var fileStream = new FileStream(Path.Combine(upload/*where to*/, fileName + extension/*what past*/), FileMode.Create))
+                using(var fileStream = new FileStream(filePath, FileMode.Create)) // upload - where to, fileName + extension - what to paste
                 {
-                    await files[0].CopyToAsync(fileStream); // записуємо в wwwroot/images/course нашу фотку
+                    files[0].CopyTo(fileStream); // записуємо в wwwroot/images/course нашу фотку
                 }
                 model.Image = fileName + extension; // записали ім'я фотки з типом в модель нашу
-            }
-            else
-            {
-                string upload = _webHostEnvironment.WebRootPath + _configuration.GetValue<string>("ImageSettings:EmptyImagePath");
-                model.Image = upload;
             }
             model.Id = Guid.NewGuid().ToString();
             var mappedCourse = _mapper.Map<AddCourseVM, Course>(model);
@@ -77,7 +73,7 @@ namespace E_Learn.BusinessLogic.Services
             {
                 return new ServiceResponse
                 {
-                    Message = "User couldn't be created.",
+                    Message = "Name is occupied or smth else.",
                     Success = false
                 };
             }

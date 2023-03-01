@@ -37,7 +37,14 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                    @if(course.Image == null)
+                                                    {
+                                                        <img src="@Url.Content("~/images/empty-image.png")" class="avatar avatar-sm me-3" alt="course-image">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="@Url.Content($"~/images/courses/{course.Image}")" class="avatar avatar-sm me-3" alt="course-image"/>
+                                                    }
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">@course.Title</h6>

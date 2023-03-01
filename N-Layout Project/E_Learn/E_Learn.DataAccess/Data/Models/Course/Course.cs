@@ -20,7 +20,7 @@ namespace E_Learn.DataAccess.Data.Models.Course
         public string Description { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public string? ImagePath { get; set; }
+        public string? Image { get; set; }
 
         [ForeignKey("Category"), AllowNull()]
         public string? CategoryId { get; set; }
