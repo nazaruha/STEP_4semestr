@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using E_Learn.DataAccess.Data.Models.User;
-using E_Learn.DataAccess.Data.Models.ViewModel.User;
+using E_Learn.DataAccess.Data.ViewModel.User;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

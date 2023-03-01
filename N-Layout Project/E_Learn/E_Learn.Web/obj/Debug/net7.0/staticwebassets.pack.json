@@ -1109,6 +1109,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\images\\empty-image.png",
+      "PackagePath": "staticwebassets\\images\\empty-image.png"
+    },
+    {
       "Id": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

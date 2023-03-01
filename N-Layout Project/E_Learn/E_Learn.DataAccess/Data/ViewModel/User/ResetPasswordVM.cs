@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Learn.DataAccess.Data.Models.ViewModel.User
+namespace E_Learn.DataAccess.Data.ViewModel.User
 {
     public class ResetPasswordVM
     {

@@ -1,4 +1,4 @@
-﻿using E_Learn.DataAccess.Data.Models.ViewModel.User;
+﻿using E_Learn.DataAccess.Data.ViewModel.User;
 using FluentValidation;
 using Microsoft.Extensions.Options;
 using System;

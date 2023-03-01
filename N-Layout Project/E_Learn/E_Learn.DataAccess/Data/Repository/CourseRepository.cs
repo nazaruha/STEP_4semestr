@@ -19,5 +19,22 @@ namespace E_Learn.DataAccess.Data.Repository
                 return await _context.Courses.Include(x => x.Category).ToListAsync(); // треба Include щоб об'єкт унаслідований з БД не був null
             }
         }
+        public async Task<bool> Create(Course model)
+        {
+            using (var _context = new AppDbContext()) 
+            {
+                try
+                {
+                    await _context.Courses.AddAsync(model);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+                
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@
 using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.Models.Categories;
 using E_Learn.DataAccess.Data.Models.User;
-using E_Learn.DataAccess.Data.Models.ViewModel.User;
+using E_Learn.DataAccess.Data.ViewModel.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;

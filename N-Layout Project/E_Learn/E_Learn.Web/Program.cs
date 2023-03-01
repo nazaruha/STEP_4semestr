@@ -1,6 +1,7 @@
 using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.Models;
 using E_Learn.DataAccess.Initializer;
+using E_Learn.Web.Infrastructure.AutoMapper;
 using E_Learn.Web.Infrastructure.Repositories;
 using E_Learn.Web.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args); // due to builder we can conne
 ServicesConfiguration.Config(builder.Services);
 
 // Add automapper
-//AutoMapperConfiguration.Config(builder.Services);
+AutoMapperConfiguration.Config(builder.Services);
 
 // Add repositories
 RepositoryConfiguration.Config(builder.Services);

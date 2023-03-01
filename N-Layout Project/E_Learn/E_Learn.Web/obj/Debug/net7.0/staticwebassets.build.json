@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hiMNwpitOlyeJsgn3NRe+tM9wmdwqzTzxJH5x8UnlV4=",
+  "Hash": "Fwi7q6el3RaRXgiOShG/CGbNtbFs2kylJaUP/hWFRxk=",
   "Source": "E_Learn.Web",
   "BasePath": "_content/E_Learn.Web",
   "Mode": "Default",
@@ -5761,6 +5761,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\images\\empty-image.png",
+      "SourceId": "E_Learn.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\",
+      "BasePath": "_content/E_Learn.Web",
+      "RelativePath": "images/empty-image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\empty-image.png"
     },
     {
       "Identity": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\js\\site.js",

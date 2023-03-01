@@ -2,7 +2,7 @@
 using E_Learn.DataAccess.AutoMapper.User;
 using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.Models.User;
-using E_Learn.DataAccess.Data.Models.ViewModel.User;
+using E_Learn.DataAccess.Data.ViewModel.User;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 
@@ -60,9 +60,6 @@ namespace E_Learn.Web.Infrastructure.Services
                 options.RegisterValidatorsFromAssemblyContaining<SignInUserVM>(); // вказуємо з якою моделю маємо працювати
             }
             );
-
-            // Add AutoMapper
-            services.AddAutoMapper(typeof(AutoMapperUserProfile));
 
         }
     }

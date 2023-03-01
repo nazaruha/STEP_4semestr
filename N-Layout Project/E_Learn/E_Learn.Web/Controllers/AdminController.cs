@@ -1,5 +1,4 @@
 ﻿using E_Learn.DataAccess.Validation.User;
-using E_Learn.DataAccess.Data.Models.ViewModel.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using E_Learn.BusinessLogic.Services;
@@ -12,6 +11,12 @@ using NuGet.DependencyResolver;
 using Microsoft.Exchange.WebServices.Data;
 using E_Learn.DataAccess.Data.Models.Categories;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Identity.Client;
+using ELearn.DataAccess.Migrations;
+using E_Learn.DataAccess.Data.ViewModel.User;
+using E_Learn.DataAccess.Data.ViewModel.Course;
+using E_Learn.DataAccess.Validation.Course;
 
 namespace E_Learn.Web.Controllers
 {
@@ -114,6 +119,42 @@ namespace E_Learn.Web.Controllers
             }
             ViewBag.AuthError = result.Message;
             return View(result.Payload);
+        }
+        public async Task<IActionResult> AddCourse()
+        {
+            await LoadCategories(); // створює ViewBag з категоріями
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCourse(AddCourseVM model)
+        {
+            var validator = new AddCourseValidation();
+            var validationResult = await validator.ValidateAsync(model);
+            if (validationResult.IsValid)
+            {
+                if (model.Files != null) // означає що ми якийсь файл добавили (фотку)
+                {
+                    model.Files = HttpContext.Request.Form.Files; // отримуємо файли які наш юзер щено передав
+                }
+                var result = await _courseService.AddCourseAsync(model);
+                if (result.Success)
+                    return RedirectToAction(nameof(Courses));
+                ViewBag.AuthError = result.Message;
+                return View(result.Payload);
+            }
+            ViewBag.AuthError = validationResult.Errors;
+            await LoadCategories();
+            return View();
+        }
+        private async System.Threading.Tasks.Task LoadCategories()
+        {
+            var result = await _categoryService.GetCategoriesAsync();
+            ViewBag.CategoryList = new SelectList( // CategoryList (можеш ввести любу назву яка тобі потрібна (сам придумуєш з голови))
+                (System.Collections.IEnumerable)result.Payload,
+                nameof(Category.Id),
+                nameof(Category.Name)
+                );
         }
         public async Task<IActionResult> Categories()
         {

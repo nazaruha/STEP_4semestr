@@ -23,4 +23,8 @@
     <ProjectReference Include="..\E_Learn.DataAccess\E_Learn.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\courses\" />
+  </ItemGroup>
+
 </Project>

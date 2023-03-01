@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using E_Learn.DataAccess.Data.Models.Categories;
+using Microsoft.AspNetCore.Http;
 
-namespace E_Learn.DataAccess.Data.Models.ViewModel.Courses
+namespace E_Learn.DataAccess.Data.ViewModel.Course
 {
     public class CourseVM
     {
@@ -16,6 +17,5 @@ namespace E_Learn.DataAccess.Data.Models.ViewModel.Courses
         public string ImagePath { get; set; } = string.Empty;
         public string CategoryId { get; set; } = string.Empty;
         public Category Category { get; set; }
-
     }
 }
