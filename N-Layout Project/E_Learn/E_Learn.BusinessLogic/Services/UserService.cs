@@ -29,16 +29,14 @@ namespace E_Learn.BusinessLogic.Services
         private readonly UserManager<AppUser> _userManager; // connect our userManager<DB>
         private readonly SignInManager<AppUser> _signInManager; // connect our sign in manager
         private readonly EmailService _emailService;
-        private readonly AppDbContext context;
 
-        public UserService(EmailService emailService, IConfiguration configuration, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext context)
+        public UserService(EmailService emailService, IConfiguration configuration, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
             _configuration = configuration;
             _emailService = emailService;
-            this.context = context;
         }
         public async Task<ServiceResponse> SignInUserAsync(SignInUserVM model) // add Async if function is asynchronimum
         {
@@ -62,6 +60,14 @@ namespace E_Learn.BusinessLogic.Services
             var verifyPassword = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: true); // checks if the user's password is correct. returns bool
             if (verifyPassword.Succeeded) // if password is correct
             {
+                if (!user.LockoutEnabled)
+                {
+                    return new ServiceResponse
+                    {
+                        Message = "You are blocked by administrator. Connect with administrator.",
+                        Success = false
+                    };
+                }
                 await _signInManager.SignInAsync(user, false); // Signs in our user
                 return new ServiceResponse
                 {
@@ -364,22 +370,19 @@ namespace E_Learn.BusinessLogic.Services
                 user.EmailConfirmed = false;
                 user.Email = model.Email;
                 user.UserName = model.Email;
+                user.LockoutEnabled = true; // lock user
                 await SendConfigurationEmailAsync(user);
+                await _userManager.SetLockoutEnabledAsync(user, user.LockoutEnabled); // set LockoutEnabled property to DB
             }
-            var isLockedResult = await _userManager.SetLockoutEnabledAsync(user, !model.isLocked);
-            if (isLockedResult.Succeeded)
+            var updateResult = await _userManager.UpdateAsync(user);
+            if (updateResult.Succeeded)
             {
-                var updateResult = await _userManager.UpdateAsync(user);
-                if (updateResult.Succeeded)
-                {    
-                    return new ServiceResponse
-                    {
-                        Message = "User is successfully updated!",
-                        Success = true,
-                    };
-                }
+                return new ServiceResponse
+                {
+                    Message = "User is successfully updated!",
+                    Success = true,
+                };
             }
-
             List<IdentityError> errorList = new List<IdentityError>();
             string errors = "";
             foreach (var error in errorList)
@@ -456,6 +459,86 @@ namespace E_Learn.BusinessLogic.Services
                 Success = false,
                 Message = "Unknown error.",
                 Errors = result.Errors.Select(e => e.Description)
+            };
+        }
+        public async Task<ServiceResponse> DeleteUserAsync(string id)
+        {
+            var userToDelete = await _userManager.FindByIdAsync(id);
+            if (userToDelete == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User not found.",
+                    Success = false
+                };
+            }
+            var result = await _userManager.DeleteAsync(userToDelete);
+            if (result.Succeeded)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User is deleted.",
+                    Success = true
+                };
+            }
+            return new ServiceResponse
+            {
+                Message = "User couldn't be deleted.",
+                Success = false
+            };
+        }
+        public async Task<ServiceResponse> BlockUserAsync(UpdateProfileVM model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User not found.",
+                    Success = false
+                };
+            }
+            var result = await _userManager.SetLockoutEnabledAsync(user, false);
+            if (result.Succeeded)
+            {
+                model.LockoutEnabled = false;
+                return new ServiceResponse
+                {
+                    Message = "User is blocked.",
+                    Success = true
+                };
+            }
+            return new ServiceResponse
+            {
+                Message = "User couldn't be blocked.",
+                Success = false
+            };
+        }
+        public async Task<ServiceResponse> UnblockUserAsync(UpdateProfileVM model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "User not found.",
+                    Success = false
+                };
+            }
+            var result = await _userManager.SetLockoutEnabledAsync(user, true);
+            if (result.Succeeded)
+            {
+                model.LockoutEnabled = true;
+                return new ServiceResponse
+                {
+                    Message = "User is unblocked",
+                    Success = true
+                };
+            }
+            return new ServiceResponse
+            {
+                Message = "User couldn't be blocked.",
+                Success = false
             };
         }
     }

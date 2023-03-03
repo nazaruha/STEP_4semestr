@@ -16,6 +16,7 @@ namespace E_Learn.DataAccess.Validation.User
             // we need to make additional validation. Because we can change the type of our inputs in HTML. So this's like insurance
             RuleFor(r => r.Email).NotEmpty().EmailAddress(); // this is our rules for Email: Not empty, correct email address
             RuleFor(r => r.Password).NotEmpty().MinimumLength(6); // rule for Password: Not empty, min length == 6
+            RuleFor(r => r.LockoutEnabled).Equals(true); // unlocked must be
         }
     }
 }

@@ -11,5 +11,6 @@ namespace E_Learn.DataAccess.Data.ViewModel.User
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public bool RememberMe { get; set; }
+        public bool LockoutEnabled { get; set; }
     }
 }

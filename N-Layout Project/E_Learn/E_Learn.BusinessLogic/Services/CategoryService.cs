@@ -15,9 +15,11 @@ namespace E_Learn.BusinessLogic.Services
     public class CategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        public CategoryService(ICategoryRepository categoryRepository)
+        private readonly ICourseRepository _courseRepository;
+        public CategoryService(ICategoryRepository categoryRepository, ICourseRepository courseRepository)
         {
-            this._categoryRepository= categoryRepository;
+            _categoryRepository = categoryRepository;
+            _courseRepository = courseRepository;   
         }
 
         public async Task<ServiceResponse> GetCategoriesAsync()
@@ -97,14 +99,19 @@ namespace E_Learn.BusinessLogic.Services
                     Success = false
                 };
             }
-            var result = _categoryRepository.RemoveCategory((Category)currentCategory.Payload);
-            if (result)
+            var courseResult = _courseRepository.ClearCategoryId(id); // clears categoryId from courses table
+            if (courseResult)
             {
-                return new ServiceResponse
+                var result = _categoryRepository.RemoveCategory((Category)currentCategory.Payload); // removes category from db
+                if (result)
                 {
-                    Message = "Category is deleted.",
-                    Success = true
-                };
+
+                    return new ServiceResponse
+                    {
+                        Message = "Category is deleted.",
+                        Success = true
+                    };
+                }
             }
             return new ServiceResponse
             {

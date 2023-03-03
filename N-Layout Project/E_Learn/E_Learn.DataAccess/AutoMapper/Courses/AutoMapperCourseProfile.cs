@@ -15,6 +15,7 @@ namespace E_Learn.DataAccess.AutoMapper.Courses
         {
             CreateMap<Course, CourseVM>().ReverseMap();
             CreateMap<Course, AddCourseVM>().ReverseMap();
+            CreateMap<Course, EditCourseVM>().ReverseMap(); 
         }
     }
 }

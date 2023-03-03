@@ -17,6 +17,6 @@ namespace E_Learn.DataAccess.Data.ViewModel.User
         public string ConfirmPassword { get; set; } = string.Empty;
         public string OldPassword { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
-        public bool isLocked { get; set; }
+        public bool LockoutEnabled { get; set; }
     }
 }

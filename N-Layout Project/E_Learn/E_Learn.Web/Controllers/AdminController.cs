@@ -148,6 +148,53 @@ namespace E_Learn.Web.Controllers
             await LoadCategories();
             return View();
         }
+        public async Task<IActionResult> EditCourse(string id)
+        {
+            var result = await _courseService.GetCourseByIdAsync(id);
+            if (result.Success)
+            {
+                await LoadCategories();
+                return View(result.Payload);
+            }
+            ViewBag.AuthError = result.Message;
+            return RedirectToAction(nameof(Courses));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCourse(EditCourseVM model)
+        {
+            var result = await _courseService.EditCourseAsync(model);
+            if (result.Success)
+            {
+                return RedirectToAction(nameof(Courses));
+            }
+            ViewBag.AuthError = result.Message;
+            await LoadCategories();
+            return View();
+
+        }
+        public async Task<IActionResult> DeleteCourse(string id)
+        {
+            var result = await _courseService.RemoveCourseAsync(id);
+            if (result.Success)
+            {
+                return RedirectToAction(nameof(Courses));
+            }
+            ViewBag.AuthError = result.Message;
+            return RedirectToAction(nameof(Courses));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteCourse(EditCourseVM model)
+        {
+            var result = await _courseService.RemoveCourseAsync(model.Id);
+            if (result.Success)
+            {
+                return RedirectToAction(nameof(Courses));
+            }
+            ViewBag.AuthError = result.Message;
+            return RedirectToAction(nameof(EditCourse));
+        }
         private async System.Threading.Tasks.Task LoadCategories()
         {
             var result = await _categoryService.GetCategoriesAsync();
@@ -196,7 +243,7 @@ namespace E_Learn.Web.Controllers
                 return RedirectToAction("Categories", "Admin");
             }
             ViewBag.AuthError = result.Message;
-            return View();
+            return RedirectToAction(nameof(Categories));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -208,7 +255,7 @@ namespace E_Learn.Web.Controllers
                 return RedirectToAction("Categories", "Admin");
             }
             ViewBag.AuthError = result.Message;
-            return View();
+            return RedirectToAction(nameof(EditCategory));
         }
         public IActionResult AddCategory()
         {
@@ -263,6 +310,46 @@ namespace E_Learn.Web.Controllers
                 return View(model);
             }
             return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUser(UpdateProfileVM model)
+        {
+            var result = await _userService.DeleteUserAsync(model.Id);
+            if (result.Success)
+            {
+                return RedirectToAction(nameof(Users));
+            }
+            ViewBag.AuthError = result.Message;
+            return RedirectToAction(nameof(ListUserSettings));
+            
+        }
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var result = await _userService.DeleteUserAsync(id);
+            if (result.Success)
+            {
+                return RedirectToAction(nameof(Users));
+            }
+            ViewBag.AuthError = result.Message;
+            return RedirectToAction(nameof(Users));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BlockUser(UpdateProfileVM model)
+        {
+            var result = await _userService.BlockUserAsync(model);
+            // не передати звідси в іншу View помилки свої. Як це зробити?
+            return RedirectToAction(nameof(ListUserSettings), model);
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UnblockUser(UpdateProfileVM model)
+        {
+            var result = await _userService.UnblockUserAsync(model);
+            return RedirectToAction(nameof(ListUserSettings), model);
+
         }
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)

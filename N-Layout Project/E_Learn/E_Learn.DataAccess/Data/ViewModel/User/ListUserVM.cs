@@ -14,7 +14,7 @@ namespace E_Learn.DataAccess.Data.ViewModel.User
         public string Email { get; set; } = string.Empty;
         public bool EmailConfirmed { get; set; }
         public string PhoneNumber { get; set; } = string.Empty;
-        public bool isLocked { get; set; } // LockoutEnd
+        public bool LockoutEnabled { get; set; }
         public string Role { get; set; } = string.Empty;
 
     }
