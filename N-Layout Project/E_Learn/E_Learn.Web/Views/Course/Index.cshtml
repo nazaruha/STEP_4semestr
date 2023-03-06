@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Categories table</h6>
+                    <h6>Courses table</h6>
                 </div>
                 @if (ViewBag.AuthError != null)
                 {
@@ -75,10 +75,10 @@
                                         @if (User.IsInRole("Administrators"))
                                         {
                                             <td class="align-middle">
-                                                <a asp-controller="Admin" asp-action="EditCourse" asp-route-id="@course.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit course">
+                                                <a asp-controller="Course" asp-action="Edit" asp-route-id="@course.Id" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit course">
                                                     Edit
                                                 </a>
-                                                <a asp-controller="Admin" asp-action="DeleteCourse" asp-route-id="@course.Id" class="text-secondary font-weight-bold text-xs ms-3" data-toggle="tooltip" data-original-title="Delete course">
+                                                <a asp-controller="Course" asp-action="Delete" asp-route-id="@course.Id" class="text-secondary font-weight-bold text-xs ms-3" data-toggle="tooltip" data-original-title="Delete course">
                                                     Delete
                                                 </a>
                                             </td>
@@ -92,7 +92,7 @@
             </div>
             @if(User.IsInRole("Administrators"))
             {
-                <a class="btn btn-success border border-1" asp-controller="Admin" asp-action="AddCourse">Add Course +</a>
+                <a class="btn btn-success border border-1" asp-controller="Course" asp-action="Create">Add Course +</a>
             }
         </div>
     </div>

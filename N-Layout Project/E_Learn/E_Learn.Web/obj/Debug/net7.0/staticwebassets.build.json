@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/NJ3XfrASabz/Jjnx5Uw73LN3yB6EnSWnr9ehY3Xr1U=",
+  "Hash": "axyfs9oHiXE8gbN6hX5urer+I4eHSCM7LCP3r0FGqPQ=",
   "Source": "E_Learn.Web",
   "BasePath": "_content/E_Learn.Web",
   "Mode": "Default",
@@ -5778,23 +5778,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\courses\\hhkhroxs.0xj.png"
-    },
-    {
-      "Identity": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\images\\courses\\qopetnwe.3tx.jpg",
-      "SourceId": "E_Learn.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\",
-      "BasePath": "_content/E_Learn.Web",
-      "RelativePath": "images/courses/qopetnwe.3tx.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\courses\\qopetnwe.3tx.jpg"
     },
     {
       "Identity": "C:\\Users\\38096\\Source\\Repos\\STEP\\12) (4семестр)\\N-Layout Project\\E_Learn\\E_Learn.Web\\wwwroot\\images\\empty-image.png",

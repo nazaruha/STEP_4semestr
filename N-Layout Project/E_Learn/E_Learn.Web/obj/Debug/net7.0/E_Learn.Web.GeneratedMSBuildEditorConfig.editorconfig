@@ -16,32 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\38096\Source\Repos\STEP\12) (4семестр)\N-Layout Project\E_Learn\E_Learn.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/AddCategory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ2F0ZWdvcnkuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/AddCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ291cnNlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/Categories.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2F0ZWdvcmllcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ29uZmlybUVtYWlsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/Courses.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ291cnNlcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/EditCategory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENhdGVnb3J5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/EditCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdENvdXJzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/ForgotPassword.cshtml]
@@ -82,6 +58,38 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Admin/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Category/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Course/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Course/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Course/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Course/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/38096/Source/Repos/STEP/12) (4семестр)/N-Layout Project/E_Learn/E_Learn.Web/Views/Home/Index.cshtml]

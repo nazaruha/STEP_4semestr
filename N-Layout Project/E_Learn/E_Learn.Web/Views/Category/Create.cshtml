@@ -10,7 +10,7 @@
                         <h5>Update profile information</h5>
                     </div>
                     <div class="card-body">
-                        <form role="form text-left" method="post" asp-controller="Admin" asp-action="AddCategory">
+                        <form role="form text-left" method="post" asp-controller="Category" asp-action="Create">
                             @if (@ViewBag.AuthError != null)
                             {
                                 @if (ViewBag.AuthError == "Category is added.")

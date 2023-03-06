@@ -10,7 +10,7 @@
                         <h5>Update Category</h5>
                     </div>
                     <div class="card-body">
-                        <form role="form text-left" method="post" asp-controller="Admin" asp-action="EditCategory">
+                        <form role="form text-left" method="post" asp-controller="Category" asp-action="Edit">
                             @if (@ViewBag.AuthError != null)
                             {
                                 <span class="text-danger">@ViewBag.AuthError</span>
@@ -24,7 +24,7 @@
                                 <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Save</button>
                             </div>
                         </form>
-                        <form method="post" asp-controller="Admin" asp-action="DeleteCategory">
+                        <form method="post" asp-controller="Category" asp-action="Delete">
                             <input asp-for="Id" type="hidden" class="form-control" aria-label="Id" aria-describedby="email-addon" />
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-danger w-100 my-4 mb-2">Delete</button>

@@ -9,7 +9,7 @@
                         <h5>Add new course</h5>
                     </div>
                     <div class="card-body">
-                        <form role="form text-left" method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="AddCourse">
+                        <form role="form text-left" method="post" enctype="multipart/form-data" asp-controller="Course" asp-action="Create">
                             <!-- enctype - щоб можна було передавати файли (фотки наші) -->
                             @if (@ViewBag.Error != null)
                             {

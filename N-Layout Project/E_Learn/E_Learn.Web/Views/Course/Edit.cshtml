@@ -9,7 +9,7 @@
                         <h5>Edit Course</h5>
                     </div>
                     <div class="card-body">
-                        <form role="form text-left" method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="EditCourse">
+                        <form role="form text-left" method="post" enctype="multipart/form-data" asp-controller="Course" asp-action="Edit">
                             <!-- enctype - щоб можна було передавати файли (фотки наші) -->
                             @if (@ViewBag.Error != null)
                             {
@@ -43,7 +43,7 @@
                                 <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Save</button>
                             </div>
                         </form>
-                        <form method="post" role="form text-left" enctype="multipart/form-data" asp-controller="Admin" asp-action="DeleteCourse">
+                        <form method="post" role="form text-left" enctype="multipart/form-data" asp-controller="Course" asp-action="Delete">
                             <input type="hidden" asp-for="Id" />
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-danger w-100 my-4 mb-2">Delete</button>
