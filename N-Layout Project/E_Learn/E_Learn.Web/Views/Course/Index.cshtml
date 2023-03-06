@@ -10,6 +10,10 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Courses table</h6>
+                    @using (Html.BeginForm("Index", "Course", FormMethod.Post))
+                    {
+                        @Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryList, "-- Sort By --", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit();" })
+                    }
                 </div>
                 @if (ViewBag.AuthError != null)
                 {
@@ -37,13 +41,13 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div>
-                                                    @if(course.Image == null)
+                                                    @if (course.Image == null)
                                                     {
                                                         <img src="@Url.Content("~/images/empty-image.png")" class="avatar avatar-sm me-3" alt="course-image">
                                                     }
                                                     else
                                                     {
-                                                        <img src="@Url.Content($"~/images/courses/{course.Image}")" class="avatar avatar-sm me-3" alt="course-image"/>
+                                                        <img src="@Url.Content($"~/images/courses/{course.Image}")" class="avatar avatar-sm me-3" alt="course-image" />
                                                     }
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
@@ -61,7 +65,8 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    @if (course.Category != null) {
+                                                    @if (course.Category != null)
+                                                    {
                                                         <h6 class="mb-0 text-sm">@course.Category.Name</h6>
                                                     }
                                                     else
@@ -90,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            @if(User.IsInRole("Administrators"))
+            @if (User.IsInRole("Administrators"))
             {
                 <a class="btn btn-success border border-1" asp-controller="Course" asp-action="Create">Add Course +</a>
             }

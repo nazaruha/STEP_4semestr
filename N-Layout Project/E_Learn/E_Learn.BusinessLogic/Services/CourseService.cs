@@ -2,6 +2,7 @@
 using E_Learn.DataAccess.AutoMapper.Courses;
 using E_Learn.DataAccess.Data.Context;
 using E_Learn.DataAccess.Data.IRepository;
+using E_Learn.DataAccess.Data.Models.Categories;
 using E_Learn.DataAccess.Data.Models.Course;
 using E_Learn.DataAccess.Data.ViewModel.Course;
 using Microsoft.AspNetCore.Hosting;
@@ -24,13 +25,15 @@ namespace E_Learn.BusinessLogic.Services
         private readonly IWebHostEnvironment _webHostEnvironment; // щоб доступатись до wwwroot в Web проекті
         private readonly IMapper _mapper;
         private readonly ICourseRepository _courseRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CourseService(IConfiguration configuration, IWebHostEnvironment webHostEnvironment, IMapper mapper, ICourseRepository courseRepository)
+        public CourseService(IConfiguration configuration, IWebHostEnvironment webHostEnvironment, IMapper mapper, ICourseRepository courseRepository, ICategoryRepository categoryRepository)
         {
             _configuration = configuration;
             _webHostEnvironment = webHostEnvironment;
             _mapper = mapper;
             _courseRepository = courseRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public async Task<ServiceResponse> GetCoursesAsync()
@@ -51,6 +54,45 @@ namespace E_Learn.BusinessLogic.Services
                 Success = true,
                 Payload = coursesVM
             };
+        }
+        public async Task<ServiceResponse> SortCoursesByCategoryAsync(string categoryId)
+        {
+            if (categoryId == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "CategoryId is null.",
+                    Success = false
+                };
+            }
+            Category category = await _categoryRepository.GetByIdAsync(categoryId);
+            if (category == null)
+            {
+                return new ServiceResponse
+                {
+                    Message = "Category isn't found by Id.",
+                    Success = false
+                };
+            }
+            string categoryName = category.Name;
+            var courses = await GetCoursesAsync();
+            if (courses.Success)
+            {
+                List<CourseVM> coursesVM = (List<CourseVM>)courses.Payload;
+                var sortedCourses = coursesVM.OrderBy(c => c.Category.Name != categoryName).ThenBy(c => c.Category.Name);
+                return new ServiceResponse
+                {
+                    Message = $"Sorted courses by the \"{categoryName}\" category",
+                    Success = true,
+                    Payload = sortedCourses
+                };
+            }
+            return new ServiceResponse
+            {
+                Message = "Couldn't load courses",
+                Success = false
+            };
+
         }
         public async Task<ServiceResponse> GetCourseByIdAsync(string id)
         {

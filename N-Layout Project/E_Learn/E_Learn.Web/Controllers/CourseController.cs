@@ -1,6 +1,5 @@
 ﻿using E_Learn.BusinessLogic.Services;
 using E_Learn.DataAccess.Data.Models.Categories;
-using E_Learn.DataAccess.Data.Models.Course;
 using E_Learn.DataAccess.Data.ViewModel.Course;
 using E_Learn.DataAccess.Validation.Course;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +21,27 @@ namespace E_Learn.Web.Controllers
             var result = await _courseService.GetCoursesAsync();
             if (result.Success)
             {
+                await LoadCategories();
                 return View(result.Payload);
             }
             ViewBag.AuthError = result.Message;
+            return View(result.Payload);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string categoryId)
+        {
+            var result = await _courseService.GetCoursesAsync();
+            await LoadCategories();
+            if (result.Success)
+            {
+                var courseList = await _courseService.SortCoursesByCategoryAsync(categoryId);
+                if (courseList.Success)
+                {
+                    return View(courseList.Payload);
+                }
+                return View(result.Payload);    
+            }
             return View(result.Payload);
         }
         public async Task<IActionResult> Create()
