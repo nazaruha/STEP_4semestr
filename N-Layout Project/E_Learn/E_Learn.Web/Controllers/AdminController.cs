@@ -103,6 +103,7 @@ namespace E_Learn.Web.Controllers
             return View(model);
             
         }
+        [Authorize(Roles = "Teachers, Administrators")]
         public async Task<IActionResult> Users()
         {
             var result = await _userService.GetUserListAsync();
