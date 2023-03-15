@@ -1,19 +1,26 @@
-import React from "react"
+import * as React from "react"
+import { Container, Grid, Button, Box } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import { ThemeContext } from "@emotion/react";
+// import { Link } from "react-router-dom";
 
-const NotFound:React.FC = () => {
+const StyledButton = styled(Button)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  }));
+
+const NotFound: React.FC = () => {
     return (
-        // <h1 className="text-danger">Not Found.</h1>
-        <Grid container spacing={3}>
-  <Grid item xs>
-    <Item>xs</Item>
-  </Grid>
-  <Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
-  <Grid item xs>
-    <Item>xs</Item>
-  </Grid>
-</Grid>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', width: '100%', maxWidth: '600px' }}>
+                <h1>404 page not found.</h1>
+                <StyledButton href="dashboard" variant="contained">Get Back Home</StyledButton>
+                {/* <Button variant="contained" href="dashboard" sx={{":hover": {backgroundColor: "green"}}}>Get Back Home</Button> */}
+            </Container>
+        </Box>
     )
 }
 
