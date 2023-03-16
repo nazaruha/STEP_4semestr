@@ -13,10 +13,9 @@ namespace Compass.Infrastructure
     public static class ServiceExtentions
     {
 
-        public static IServiceCollection AddDbContext(this IServiceCollection services, string connectionString)
+        public static void AddDbContext(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connectionString));
-            return services;
         }
 
         //public static void AddIdentity(this IServiceCollection services)
