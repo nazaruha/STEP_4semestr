@@ -1,0 +1,11 @@
+
+.emailField, .passwordField {
+    width: 400px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 28px;
+}
+
+/* 1976d2 */
