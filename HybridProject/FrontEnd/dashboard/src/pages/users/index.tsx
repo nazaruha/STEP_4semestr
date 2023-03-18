@@ -1,3 +1,4 @@
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { alpha } from "@mui/material/styles";
 import React from "react";
 import Box from "@mui/material/Box";
@@ -22,44 +23,24 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
 interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
+  id: number;
   name: string;
-  protein: number;
+  surname: string;
+  phone: string;
+  email: string;
+  role: string;
 }
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-): Data {
+function createData(id: number, name: string, surname: string, phone: string, email: string, role: string): Data {
   return {
+    id,
     name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    surname,
+    phone,
+    email,
+    role
   };
 }
-
-const rows = [
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Donut", 452, 25.0, 51, 4.9),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("Honeycomb", 408, 3.2, 87, 6.5),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Jelly Bean", 375, 0.0, 94, 0.0),
-  createData("KitKat", 518, 26.0, 65, 7.0),
-  createData("Lollipop", 392, 0.2, 98, 0.0),
-  createData("Marshmallow", 318, 0, 81, 2.0),
-  createData("Nougat", 360, 19.0, 9, 37.0),
-  createData("Oreo", 437, 18.0, 63, 4.0),
-];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -85,10 +66,6 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort<T>(
   array: readonly T[],
   comparator: (a: T, b: T) => number
@@ -113,34 +90,40 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
   {
-    id: "name",
+    id: "id",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)",
+    label: "Id",
   },
   {
-    id: "calories",
+    id: "name",
     numeric: true,
     disablePadding: false,
-    label: "Calories",
+    label: "Name",
   },
   {
-    id: "fat",
+    id: "surname",
     numeric: true,
     disablePadding: false,
-    label: "Fat (g)",
+    label: "Surname",
   },
   {
-    id: "carbs",
+    id: "email",
     numeric: true,
     disablePadding: false,
-    label: "Carbs (g)",
+    label: "Email",
   },
   {
-    id: "protein",
+    id: "phone",
     numeric: true,
     disablePadding: false,
-    label: "Protein (g)",
+    label: "Phone",
+  },
+  {
+    id: "role",
+    numeric: true,
+    disablePadding: false,
+    label: "Role",
   },
 ];
 
@@ -269,11 +252,13 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 
 const Users: React.FC = () => {
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
+  const [orderBy, setOrderBy] = React.useState<keyof Data>("name");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const { allUsers } = useTypedSelector((store) => store.UserReducer);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -286,14 +271,14 @@ const Users: React.FC = () => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = allUsers.map((n: any) => n.name);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+  const handleClick = (event: React.MouseEvent<unknown>, name: any) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -328,11 +313,11 @@ const Users: React.FC = () => {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (name: any) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allUsers.length) : 0;
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -350,10 +335,10 @@ const Users: React.FC = () => {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={allUsers.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(allUsers, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.name);
@@ -384,12 +369,13 @@ const Users: React.FC = () => {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.id}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.name}</TableCell>
+                      <TableCell align="right">{row.surname}</TableCell>
+                      <TableCell align="right">{row.email}</TableCell>
+                      <TableCell align="right">{row.phone}</TableCell>
+                      <TableCell align="right">{row.role}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -408,7 +394,7 @@ const Users: React.FC = () => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={allUsers.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
