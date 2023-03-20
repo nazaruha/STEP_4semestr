@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../App.css';
+import '../../../App.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Formik, Form, Field, FieldProps} from 'formik';
-import { SignInSchema } from '../../validation/signInSchema';
+import { LoginSchema } from '../validation';
 
 function Copyright(props: any) {
   return (
@@ -28,6 +28,8 @@ function Copyright(props: any) {
     </Typography>
   );
 }
+
+const initialValues = {email: "", password: "", rememberMe: false};
 
 const theme = createTheme();
 
@@ -60,48 +62,49 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Formik
-            initialValues={{
-              email: '',
-              password: '',
-            }}
-            validationSchema={SignInSchema}
-            onSubmit={values => {
-              console.log(values);
-            }}
+            initialValues={initialValues}
+            onSubmit={() => {}}
+            validationSchema={LoginSchema}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched, isSubmitting, isValid, dirty }) => (
               <Form>
-                <Field
+                <Field as={TextField} sdskd
+                    margin="normal"
+                    fullWidth
                     class="emailField"
                     name="email"
                     id="email"
                     type="email"
                     placeholder={"Email Address*"}
+                    autoFocus
                   />
-                {errors.email ? (
-                  <span style={{color: 'red', display: 'block'}}>{errors.email}</span>
+                {errors.email && touched.email ? (
+                  <div style={{color: 'red'}}>{errors.email}</div>
                 ) : null}
-              <Field
+              <Field as={TextField}
+                margin="normal"
+                fullWidth
                 class="passwordField"
                 name="password"
                 id="password"
                 type="password"
                 placeholder={"Password*"}
               />
-              {errors.password ? (
-                <span style={{color: 'red', display: 'block'}}>{errors.password}</span>
+              {errors.password && touched.password ? (
+                <span style={{color: 'red'}}>{errors.password}</span>
               ) : null}
               <FormControlLabel sx={{display: 'block'}}
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
               <Button
+                disabled={!(isValid && dirty)} {/* */}
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                {isSubmitting ? "Loading" : "SignIn"} {/*  */}
               </Button>
               <Grid container>
                 <Grid item xs>

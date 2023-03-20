@@ -1,7 +1,7 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
-import SignIn from "./pages/signIn";
-import SignUp from "./pages/signUp";
+import SignIn from "./pages/auth/signIn";
+import SignUp from "./pages/auth/signUp";
 import DashboardLayout from "./containers/dashboardLayout";
 import DefaultPage from "./pages/defaultPage";
 import Users from "./pages/users";
