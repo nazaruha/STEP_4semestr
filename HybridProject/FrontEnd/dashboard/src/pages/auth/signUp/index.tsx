@@ -127,6 +127,7 @@ export default function SignUp() {
                       </Grid>
                     </Grid>
                     <Button
+                      disabled={!(isValid && dirty)}
                       type="submit"
                       fullWidth
                       variant="contained"
