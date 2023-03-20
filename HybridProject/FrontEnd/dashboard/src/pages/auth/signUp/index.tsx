@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { RegisterSchema } from '../validation';
+import { Formik, Field } from 'formik';
+import { string } from 'yup';
 
 function Copyright(props: any) {
   return (
@@ -25,6 +28,10 @@ function Copyright(props: any) {
     </Typography>
   );
 }
+
+const initialValues = {
+  firstName: "", lastName: "", email: "", password: ""
+};
 
 const theme = createTheme();
 
@@ -56,75 +63,90 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+          <Formik
+            initialValues={initialValues}
+            onSubmit={() => {}}
+            validationSchema={RegisterSchema}
             >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/sign-in" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+              {({errors, touched, isSubmitting, isValid, dirty}) => {
+                return (
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: "100%", height: "326px" }}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6}>
+                        <Field as={TextField}
+                          autoComplete="given-name"
+                          name="firstName"
+                          fullWidth
+                          id="firstName"
+                          label="First Name"
+                        />
+                        {errors.firstName && touched.firstName ? (<div style={{color: "red"}}>{errors.firstName}</div>) : null}
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Field as={TextField}
+                          fullWidth
+                          id="lastName"
+                          label="Last Name"
+                          name="lastName"
+                          autoComplete="family-name"
+                        />
+                        {errors.lastName && touched.lastName ? (
+                          <div style={{ color: "red"}}>{errors.lastName}</div>
+                        ) : null}
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field as={TextField}
+                          fullWidth
+                          id="email"
+                          label="Email Address"
+                          name="email"
+                          autoComplete="email"
+                        />
+                        {errors.email && touched.email ? (
+                          <div style={{color: "red"}}>{errors.email}</div>
+                        ) : null}
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field as={TextField}
+                          fullWidth
+                          name="password"
+                          label="Password"
+                          type="password"
+                          id="password"
+                          autoComplete="new-password"
+                        />
+                        {errors.password && touched.password ? (
+                          <div style={{color: "red"}}>{errors.password}</div>
+                        ) : null}
+                      </Grid>
+                      <Grid item xs={12}>
+                        <FormControlLabel
+                          control={<Checkbox value="allowExtraEmails" color="primary" />}
+                          label="I want to receive inspiration, marketing promotions and updates via email."
+                        />
+                      </Grid>
+                    </Grid>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      sx={{ mt: 3, mb: 2 }}
+                    >
+                      {isSubmitting ? "Loading" : "SignUp"}
+                    </Button>
+                    <Grid container justifyContent="flex-end">
+                      <Grid item>
+                        <Link href="/sign-in" variant="body2">
+                          Already have an account? Sign in
+                        </Link>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                );
+              }}
+          </Formik>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright sx={{ mt: 19 }} />
       </Container>
     </ThemeProvider>
   );
