@@ -1,0 +1,14 @@
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\bin\Debug\net7.0\BackEnd.Core.deps.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\bin\Debug\net7.0\BackEnd.Core.runtimeconfig.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\bin\Debug\net7.0\BackEnd.Core.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\bin\Debug\net7.0\BackEnd.Core.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.csproj.AssemblyReference.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.AssemblyInfoInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.AssemblyInfo.cs
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.csproj.CoreCompileInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\refint\BackEnd.Core.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\BackEnd.Core.genruntimeconfig.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Core\obj\Debug\net7.0\ref\BackEnd.Core.dll

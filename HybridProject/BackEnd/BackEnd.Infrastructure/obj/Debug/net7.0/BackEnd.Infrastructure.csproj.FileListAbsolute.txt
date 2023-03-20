@@ -1,0 +1,14 @@
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\bin\Debug\net7.0\BackEnd.Infrastructure.deps.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\bin\Debug\net7.0\BackEnd.Infrastructure.runtimeconfig.json
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\bin\Debug\net7.0\BackEnd.Infrastructure.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\bin\Debug\net7.0\BackEnd.Infrastructure.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.AssemblyInfo.cs
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\refint\BackEnd.Infrastructure.dll
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.pdb
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\BackEnd.Infrastructure.genruntimeconfig.cache
+C:\Users\38096\Source\Repos\STEP\12) (4семестр)\HybridProject\BackEnd\BackEnd.Infrastructure\obj\Debug\net7.0\ref\BackEnd.Infrastructure.dll
