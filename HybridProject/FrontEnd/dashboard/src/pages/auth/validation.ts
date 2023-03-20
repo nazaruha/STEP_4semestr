@@ -10,7 +10,26 @@ export const LoginSchema = Yup.object().shape({
     password: Yup.string()
         .min(6, "Password must have at least 6 characters")
         .required("Required")
-        .matches(passwordRegExp, "Password must contain A-Z, a-z, 0-9 additional symbols (#?!@$%^&*0-_)") // use our regex for verificatioln
+        .matches(passwordRegExp, "Password must contain A-Z, a-z, 0-9. Addition can be symbols (#?!@$%^&*0-_)") // use our regex for verificatioln
         .label("Password"),
 
 });
+
+export const RegisterSchema = Yup.object().shape({
+    firstName: Yup.string()
+        .required("Required")
+        .label("First Name"),
+    lastName: Yup.string()
+        .required("Required")
+        .label("Last Name"),
+    email: Yup.string()
+        .email()
+        .required("Required")
+        .label("Email Address"),
+    password: Yup.string()
+        .required("Required")
+        .min(6, "Password must have at least 6 characters")
+        .matches(passwordRegExp, "Password must contain A-Z, a-z, 0-9. Addition can be symbols (#?!@$%^&*0-_)")
+        .label("Password"),
+
+})
