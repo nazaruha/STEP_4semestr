@@ -6,7 +6,7 @@ enum Roles {
     Admin = "ADMIN"
 }
 
-const initialState: UserState ={
+const initialState: UserState = {
     allUsers: [
         {
             id: 1,
@@ -61,13 +61,13 @@ const initialState: UserState ={
 }
 
 const UserReducer = (state = initialState, action: any): UserState => {
-    switch(action.type) {
+    switch (action.type) {
         case UserActionType.START_REQUEST:
             return { ...state, loading: true };// ...state - передаємо наш об'єкт і нічого в ньому міняти не будемо
         case UserActionType.FINISH_REQUEST:
             return { ...state, loading: false };
         case UserActionType.ALL_USERS_LOADED:
-            return { ...state, loading: false, allUsers: action.payload}
+            return { ...state, loading: false, allUsers: action.payload }
         default:
             return state;
     }

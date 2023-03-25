@@ -104,7 +104,7 @@ namespace E_Learn.BusinessLogic.Services
             var result = await _userManager.CreateAsync(mappedUser, model.Password);
             if (result.Succeeded) // якщо юзер створився успішно
             {                
-                await _userManager.AddToRoleAsync(mappedUser, model.Role); // додаєм юзера в роль
+                var resultRole = await _userManager.AddToRoleAsync(mappedUser, model.Role); // додаєм юзера в роль
                 await SendConfigurationEmailAsync(mappedUser); // send to email configuration letter to confirm password
                 return new ServiceResponse
                 {
