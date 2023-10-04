@@ -13,8 +13,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Formik, Field} from 'formik';
+import {Formik, Field, validateYupSchema} from 'formik';
 import { LoginSchema } from '../validation'; 
+import { Navigate } from 'react-router-dom';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useActions } from '../../../hooks/useActions';
 
 function Copyright(props: any) {
   return (
@@ -29,18 +32,29 @@ function Copyright(props: any) {
   );
 }
 
-const initialValues = {email: "", password: "", rememberMe: false};
+const values = { email: "", password: "", rememberMe: false };
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const { message, isAuth } = useTypedSelector((store) => store.UserReducer);
+  const { LoginUser } = useActions();
+
+  if (message === "You have logged in!") {
+    return <Navigate to="/dashboard" />
+  }
+
+  if(isAuth) { // якщо залогінений
+    return <Navigate to="/dashboard" />
+  }
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const user = {
+      Email: data.get('email'),
+      Password: data.get('password')
+    };
+    LoginUser(user);
   };
 
   return (
@@ -62,7 +76,7 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Formik
-            initialValues={initialValues}
+            initialValues={values}
             onSubmit={() => {}}
             validationSchema={LoginSchema}
           >
@@ -98,7 +112,7 @@ export default function SignIn() {
                     <div style={{ color: "red" }}>{errors.password}</div>
                   ) : null}
                   <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
+                    control={<Checkbox id="rememberMe" name="rememberMe" color="primary"/>}
                     label="Remember me"
                   />
                   <Button
@@ -108,7 +122,7 @@ export default function SignIn() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                    {isSubmitting ? "Loading" : "Sign In"} 
+                    { isSubmitting ? "Loading" : "Sign In" } 
                   </Button>
                   <Grid container>
                     <Grid item xs>

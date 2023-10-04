@@ -1,6 +1,7 @@
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
 import { alpha } from "@mui/material/styles";
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -21,6 +22,8 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Data {
   id: number;
@@ -89,12 +92,12 @@ interface HeadCell {
 }
 
 const headCells: readonly HeadCell[] = [
-  {
-    id: "id",
-    numeric: false,
-    disablePadding: true,
-    label: "Id",
-  },
+  // {
+  //   id: "id",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Id",
+  // },
   {
     id: "name",
     numeric: true,
@@ -112,12 +115,6 @@ const headCells: readonly HeadCell[] = [
     numeric: true,
     disablePadding: false,
     label: "Email",
-  },
-  {
-    id: "phone",
-    numeric: true,
-    disablePadding: false,
-    label: "Phone",
   },
   {
     id: "role",
@@ -257,8 +254,12 @@ const Users: React.FC = () => {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const { allUsers } = useTypedSelector((store) => store.UserReducer);
+  
+  const { allUsers } = useTypedSelector((store) => store.UserReducer); // get our users
+  const { Users } = useActions(); // action to get users from back server
+  useEffect(() => { // need this shit to call our Users method to get users from back server
+    Users();
+  }, []);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -363,19 +364,14 @@ const Users: React.FC = () => {
                           }}
                         />
                       </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                      >
-                        {row.id}
-                      </TableCell>
                       <TableCell align="right">{row.name}</TableCell>
                       <TableCell align="right">{row.surname}</TableCell>
                       <TableCell align="right">{row.email}</TableCell>
                       <TableCell align="right">{row.phone}</TableCell>
-                      <TableCell align="right">{row.role}</TableCell>
+                      <TableCell align="left">{row.role}</TableCell>
+                      <TableCell>
+                        <Link to="editUser">Edit</Link>
+                      </TableCell>
                     </TableRow>
                   );
                 })}

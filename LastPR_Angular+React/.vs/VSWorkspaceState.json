@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\Compass.Api",
+    "\\backend\\Compass.Api\\Controllers"
+  ],
+  "SelectedNode": "\\backend\\Compass.Api\\Controllers\\UserController.cs",
+  "PreviewInSolutionExplorer": false
+}

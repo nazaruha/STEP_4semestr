@@ -10,38 +10,73 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
+import LanIcon from "@mui/icons-material/Lan";
 
-export const mainListItems = (
+// export const mainListItems = (
+//   <React.Fragment>
+//     <Link to="">
+//       <ListItemButton>
+//         <ListItemIcon>
+//           <DashboardIcon />
+//         </ListItemIcon>
+//         <ListItemText primary="Dashboard" />
+//       </ListItemButton>
+//     </Link>
+//     <Link to="users">
+//       <ListItemButton>
+//         <ListItemIcon>
+//           <PeopleIcon />
+//         </ListItemIcon>
+//         <ListItemText primary="Users" />
+//       </ListItemButton>
+//     </Link>
+//   </React.Fragment>
+// );
+
+// export const secondaryListItems = (
+//   <React.Fragment>
+//     <ListSubheader component="div" inset>
+//       Saved reports
+//     </ListSubheader>
+//     <ListItemButton>
+//       <ListItemIcon>
+//         <AssignmentIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Profile" />
+//     </ListItemButton>
+//   </React.Fragment>
+// );
+
+export const adminMenu = (
   <React.Fragment>
-    <Link to="">
-      <ListItemButton>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
+    <ListItemButton>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <Link to="">
         <ListItemText primary="Dashboard" />
-      </ListItemButton>
-    </Link>
-    <Link to="users">
-      <ListItemButton>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
+      </Link>
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <Link to="users">
         <ListItemText primary="Users" />
-      </ListItemButton>
-    </Link>
+      </Link>
+    </ListItemButton>
   </React.Fragment>
 );
 
-export const secondaryListItems = (
+export const userMenu = (
   <React.Fragment>
-    <ListSubheader component="div" inset>
-      Saved reports
-    </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Profile" />
+      <Link to="">
+        <ListItemText primary="Dashboard" />
+      </Link>
     </ListItemButton>
   </React.Fragment>
 );
